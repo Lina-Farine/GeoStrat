@@ -1,0 +1,2 @@
+# GeoStrat
+Jeu géo-stratégique
