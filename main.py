@@ -243,6 +243,29 @@ def dessiner_action_panel(code_cible, clic_x):
     # On renvoie aussi l'état actuel pour que le clic sache quoi faire
     return btn_action_1, btn_action_2, est_allie, est_en_guerre
 
+def dessiner_menu():
+    """Affiche l'écran d'accueil avec les boutons Nouvelle Partie et Charger."""
+    screen.fill((20, 20, 30)) # Fond sombre élégant
+    
+    # Titre du jeu
+    titre_surf = font_titre.render("GEOPOLY 2026", True, (255, 255, 255))
+    screen.blit(titre_surf, (WIDTH//2 - titre_surf.get_width()//2, 150))
+    
+    # Bouton Nouvelle Partie
+    btn_neuf = pygame.Rect(WIDTH//2 - 150, 300, 300, 60)
+    pygame.draw.rect(screen, (50, 150, 50), btn_neuf, border_radius=10)
+    txt_neuf = font_texte.render("Nouvelle Partie", True, (255, 255, 255))
+    screen.blit(txt_neuf, (btn_neuf.centerx - txt_neuf.get_width()//2, btn_neuf.centery - txt_neuf.get_height()//2))
+    
+    # Bouton Charger (uniquement si une save existe)
+    btn_load = pygame.Rect(WIDTH//2 - 150, 400, 300, 60)
+    couleur_load = (50, 50, 150) if os.path.exists(moteur.fichier_sauvegarde) else (80, 80, 80)
+    pygame.draw.rect(screen, couleur_load, btn_load, border_radius=10)
+    txt_load = font_texte.render("Charger la partie", True, (255, 255, 255))
+    screen.blit(txt_load, (btn_load.centerx - txt_load.get_width()//2, btn_load.centery - txt_load.get_height()//2))
+    
+    return btn_neuf, btn_load
+
 # --- CHARGEMENT DES DONNÉES ---
 dossier = os.path.dirname(os.path.abspath(__file__))
 
@@ -270,19 +293,7 @@ pays_joueur = None
 calque_joueur = None 
 actions_joueur = {}
 mois_actuel = 1
- 
-# --- SI SAUVEGARDE EXISTE ---
-if etat_actuel:
-    phase_de_jeu = "JOUER"
-    pays_joueur = etat_actuel["pays_joueur"]
-    
-    # On cherche l'Hexa du pays du joueur pour recréer son calque bleu
-    for hexa, code in MAP_HEX_TO_CODE.items():
-        if code == pays_joueur:
-            calque_joueur = creer_calque_couleur(hexa, (0, 100, 255, 255))
-            break
-else:
-    phase_de_jeu = "SELECTION"
+phase_de_jeu = "MENU"
 
 # --- BOUCLE PRINCIPALE ---
 running = True
@@ -294,9 +305,36 @@ if phase_de_jeu == "JOUER":
     calques_diplo = maj_calques_diplomatie()
 
 while running:
-    # 1. Dessiner la carte de base
-    screen.blit(MAP_VISUELLE, (0, 0))
-    mouse_pos = pygame.mouse.get_pos()
+
+    if phase_de_jeu == "MENU":
+        btn_neuf, btn_load = dessiner_menu()
+        
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if btn_neuf.collidepoint(event.pos):
+                    # On supprime l'ancienne save si elle existe pour repartir de zéro
+                    if os.path.exists(moteur.fichier_sauvegarde):
+                        os.remove(moteur.fichier_sauvegarde)
+                    phase_de_jeu = "SELECTION" # On va choisir son pays
+                    
+                elif btn_load.collidepoint(event.pos) and os.path.exists(moteur.fichier_sauvegarde):
+                    etat = moteur.charger_sauvegarde()
+                    if etat:
+                        phase_de_jeu = "JOUER"
+                        pays_joueur = etat["pays_joueur"]
+                        # On recrée les calques immédiatement
+                        for hexa, code in MAP_HEX_TO_CODE.items():
+                            if code == pays_joueur:
+                                calque_joueur = creer_calque_couleur(hexa, (0, 100, 255, 150))
+                        calques_diplo = maj_calques_diplomatie()
+
+    elif phase_de_jeu == "SELECTION" or phase_de_jeu == "JOUER":
+    
+        # 1. Dessiner la carte de base
+        screen.blit(MAP_VISUELLE, (0, 0))
+        mouse_pos = pygame.mouse.get_pos()
     
     # 2. Dessiner TOUS les calques de couleurs
     if phase_de_jeu == "JOUER":

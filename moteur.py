@@ -15,12 +15,24 @@ def resoudre_tour(actions_joueur, etat_du_monde, nom_joueur):
 
     # ÉTAPE 2 : Diplomatie et Guerres
     for attaquant, ordres in toutes_les_actions.items():
-        for cible, action in ordres.items():
+        for cible, action in list(ordres.items()):
             
-            # Si A veut s'allier à B, mais B attaque A
-            if action == "ALLIANCE" and toutes_les_actions.get(cible, {}).get(attaquant) == "ATTAQUE":
-                print(f"🚫 L'alliance entre {attaquant} et {cible} a échoué : la guerre a éclaté !")
-                del ordres[cible] # On annule la demande d'alliance
+            # Si A veut s'allier à B...
+            if action == "ALLIANCE":
+                # ...mais que B attaque A (ou que A attaque B dans ses autres ordres)
+                b_attaque_a = toutes_les_actions.get(cible, {}).get(attaquant) == "ATTAQUE"
+                a_attaque_b = toutes_les_actions.get(attaquant, {}).get(cible) == "ATTAQUE"
+                
+                if b_attaque_a or a_attaque_b:
+                    print(f"🚫 L'alliance entre {attaquant} et {cible} a échoué : la guerre a éclaté !")
+                    
+                    # On supprime la demande d'alliance chez les DEUX pays pour être sûr
+                    if cible in toutes_les_actions[attaquant]:
+                        del toutes_les_actions[attaquant][cible]
+                    if attaquant in toutes_les_actions.get(cible, {}):
+                        # On ne supprime que si c'était une alliance (on laisse l'attaque)
+                        if toutes_les_actions[cible][attaquant] == "ALLIANCE":
+                            del toutes_les_actions[cible][attaquant]
 
             if action == "ATTAQUE":
                 if cible not in etat_du_monde[attaquant]["en_guerre_contre"]:
@@ -99,7 +111,7 @@ def simulation_appel_ia(etat_du_monde, nom_joueur):
             # --- RÈGLE 2 : Si pas allié et pas en guerre, peut-elle attaquer ? ---
             elif not est_allie and not est_en_guerre:
                 # 2% de chance de déclarer une guerre au hasard
-                if random.random() < 0.02:
+                if random.random() < 0.10:
                     actions_ia[pays][cible] = "ATTAQUE"
                 # 5% de chance de proposer une alliance
                 elif random.random() < 0.05:
