@@ -1,3 +1,4 @@
+from numpy.compat import asstr
 import pygame
 import sys
 import json
@@ -57,53 +58,83 @@ def maj_calques_diplomatie():
     return calques
 
 def dessiner_top_bar():
-    """Affiche les ressources du joueur en haut de l'écran."""
+    """Affiche les ressources du joueur en haut de l'écran avec des icônes PNG."""
     if phase_de_jeu != "JOUER": return
     
     stats = moteur.etat_jeu["monde"][pays_joueur]["ressources"]
     
-    # Barre de fond noire semi-transparente
+    # Barre de fond
     rect_bar = pygame.Rect(0, 0, WIDTH, 45)
     pygame.draw.rect(screen, (30, 30, 30), rect_bar)
     pygame.draw.line(screen, (100, 100, 100), (0, 45), (WIDTH, 45), 2)
     
-    # Les textes à afficher
-    textes = [
-        f"Pop: {int(stats['H'])}M",
-        f"Nourriture: {int(stats['N'])}t",
-        f"Pétrole: {int(stats['P'])}k",
-        f"Argent: {int(stats['A'])}$",
-        f"Satisfaction: {int(stats['S'])}%"
+    # Chargement et redimensionnement
+    icon_pop = pygame.image.load("assets/images/Population.png").convert_alpha()
+    icon_pop = pygame.transform.smoothscale(icon_pop, (25, 25))
+
+    icon_food = pygame.image.load("assets/images/Nourriture.png").convert_alpha()
+    icon_food = pygame.transform.smoothscale(icon_food, (25, 25))
+
+    icon_oil = pygame.image.load("assets/images/Pétrole.png").convert_alpha()
+    icon_oil = pygame.transform.smoothscale(icon_oil, (25, 25))
+
+    icon_money = pygame.image.load("assets/images/Argent.png").convert_alpha()
+    icon_money = pygame.transform.smoothscale(icon_money, (25, 25))
+
+    icon_sat = pygame.image.load("assets/images/Satisfaction.png").convert_alpha()
+    icon_sat = pygame.transform.smoothscale(icon_sat, (25, 25))
+
+    # On associe chaque icône à sa valeur textuelle
+    ressources_a_afficher = [
+        (icon_pop, f"{int(stats['H'])}M"),
+        (icon_food, f"{int(stats['N'])}t"),
+        (icon_oil, f"{int(stats['P'])}k"),
+        (icon_money, f"{int(stats['A'])}$"),
+        (icon_sat, f"{int(stats['S'])}%")
     ]
     
-    x_offset = 50
-    for texte in textes:
-        surf = font_titre.render(texte, True, (255, 255, 255)) # Texte blanc
-        screen.blit(surf, (x_offset, 8))
-        x_offset += 230 # Espace entre chaque ressource
+    x_offset = 30 # Point de départ à gauche
+    espacement = WIDTH / len(ressources_a_afficher) # Répartition équitable
+    
+    for icone, texte in ressources_a_afficher:
+        # 1. On dessine l'icône PNG
+        screen.blit(icone, (x_offset, 10))
+        
+        # 2. On dessine le texte juste à droite de l'icône (+35 pixels)
+        surf_texte = font_titre.render(texte, True, (255, 255, 255))
+        screen.blit(surf_texte, (x_offset + 35, 8))
+        
+        # On décale pour la ressource suivante
+        x_offset += espacement
 
 def dessiner_legende():
-    """Dessine un petit bloc en bas à gauche pour expliquer les couleurs."""
+    """Dessine un bloc propre en bas à gauche pour expliquer les couleurs."""
     if phase_de_jeu != "JOUER": return
     
+    # Dimensions de la boîte (agrandies)
+    box_width = 200
+    box_height = 140
+    base_x = 20
+    base_y = HEIGHT - box_height - 20 # S'adapte pour laisser 20px de marge en bas
+    
     # Boîte de fond
-    rect_legende = pygame.Rect(20, HEIGHT - 140, 180, 120)
+    rect_legende = pygame.Rect(base_x, base_y, box_width, box_height)
     pygame.draw.rect(screen, (40, 40, 40), rect_legende, border_radius=8)
     pygame.draw.rect(screen, (100, 100, 100), rect_legende, 2, border_radius=8)
     
-    screen.blit(font_texte.render("Légende :", True, (255, 255, 255)), (30, HEIGHT - 130))
+    screen.blit(font_texte.render("Légende :", True, (255, 255, 255)), (base_x + 15, base_y + 10))
     
     # Bleu = Vous
-    pygame.draw.rect(screen, (0, 100, 255), (30, HEIGHT - 95, 20, 20))
-    screen.blit(font_texte.render("Votre Pays", True, (200, 200, 200)), (60, HEIGHT - 98))
+    pygame.draw.rect(screen, (0, 100, 255), (base_x + 15, base_y + 45, 20, 20))
+    screen.blit(font_texte.render("Votre Pays", True, (200, 200, 200)), (base_x + 45, base_y + 43))
     
     # Vert = Allié
-    pygame.draw.rect(screen, (0, 200, 0), (30, HEIGHT - 65, 20, 20))
-    screen.blit(font_texte.render("Alliés", True, (200, 200, 200)), (60, HEIGHT - 68))
+    pygame.draw.rect(screen, (0, 200, 0), (base_x + 15, base_y + 75, 20, 20))
+    screen.blit(font_texte.render("Alliés", True, (200, 200, 200)), (base_x + 45, base_y + 73))
     
     # Rouge = Ennemi
-    pygame.draw.rect(screen, (200, 0, 0), (30, HEIGHT - 35, 20, 20))
-    screen.blit(font_texte.render("En Guerre", True, (200, 200, 200)), (60, HEIGHT - 38))
+    pygame.draw.rect(screen, (200, 0, 0), (base_x + 15, base_y + 105, 20, 20))
+    screen.blit(font_texte.render("En Guerre", True, (200, 200, 200)), (base_x + 45, base_y + 103))
 
 def dessiner_dashboard(code_pays, clic_x):
     """Dessine le panneau latéral gris du côté opposé au clic."""
@@ -159,7 +190,7 @@ def dessiner_dashboard(code_pays, clic_x):
 rect_fin_tour = pygame.Rect(WIDTH - 250, HEIGHT - 80, 230, 60)
 
 def dessiner_action_panel(code_cible, clic_x):
-    """Dessine le panneau d'action (Alliance/Attaque) en phase de jeu"""
+    """Dessine le panneau d'action de façon dynamique selon les relations."""
     panel_x = 850 if clic_x < WIDTH / 2 else 30
     panel_y = 100
     
@@ -172,20 +203,44 @@ def dessiner_action_panel(code_cible, clic_x):
     screen.blit(font_titre.render(f"Ordres vers : {nom_cible}", True, (255, 255, 255)), (panel_x + 20, panel_y + 20))
     
     # Boutons d'action
-    btn_alliance = pygame.Rect(panel_x + 50, panel_y + 100, 300, 50)
-    btn_attaque = pygame.Rect(panel_x + 50, panel_y + 170, 300, 50)
+    btn_action_1 = pygame.Rect(panel_x + 50, panel_y + 100, 300, 50)
+    btn_action_2 = pygame.Rect(panel_x + 50, panel_y + 170, 300, 50)
     
-    # Couleurs selon si l'action est déjà planifiée
-    couleur_all = (50, 150, 50) if actions_joueur.get(code_cible) == "ALLIANCE" else (70, 70, 70)
-    couleur_att = (200, 50, 50) if actions_joueur.get(code_cible) == "ATTAQUE" else (70, 70, 70)
+    # --- LOGIQUE DIPLOMATIQUE ---
+    monde = moteur.etat_jeu["monde"]
+    est_allie = code_cible in monde[pays_joueur]["alliances"]
+    est_en_guerre = code_cible in monde[pays_joueur]["en_guerre_contre"]
+    action_choisie = actions_joueur.get(code_cible)
+
+    # Textes des boutons
+    texte_btn_1 = "Rompre l'Alliance" if est_allie else "Proposer Alliance"
+    texte_btn_2 = "Signer la Paix" if est_en_guerre else "Déclarer la Guerre"
+
+    # Couleurs du bouton 1 (Alliance / Rupture)
+    if est_en_guerre:
+        couleur_1 = (60, 60, 60) # Grisé (Impossible de s'allier en temps de guerre)
+    elif est_allie:
+        couleur_1 = (200, 100, 50) if action_choisie == "ROMPRE_ALLIANCE" else (70, 70, 70)
+    else:
+        couleur_1 = (50, 150, 50) if action_choisie == "ALLIANCE" else (70, 70, 70)
+
+    # Couleurs du bouton 2 (Guerre / Paix)
+    if est_allie:
+        couleur_2 = (60, 60, 60) # Grisé (Impossible d'attaquer un allié sans rompre l'alliance d'abord)
+    elif est_en_guerre:
+        couleur_2 = (50, 150, 200) if action_choisie == "PAIX" else (70, 70, 70)
+    else:
+        couleur_2 = (200, 50, 50) if action_choisie == "ATTAQUE" else (70, 70, 70)
+
+    # Dessin des boutons
+    pygame.draw.rect(screen, couleur_1, btn_action_1, border_radius=5)
+    pygame.draw.rect(screen, couleur_2, btn_action_2, border_radius=5)
     
-    pygame.draw.rect(screen, couleur_all, btn_alliance, border_radius=5)
-    pygame.draw.rect(screen, couleur_att, btn_attaque, border_radius=5)
+    screen.blit(font_texte.render(texte_btn_1, True, (255,255,255)), (panel_x + 100, panel_y + 110))
+    screen.blit(font_texte.render(texte_btn_2, True, (255,255,255)), (panel_x + 100, panel_y + 180))
     
-    screen.blit(font_texte.render("Proposer Alliance", True, (255,255,255)), (panel_x + 100, panel_y + 110))
-    screen.blit(font_texte.render("Déclarer la Guerre", True, (255,255,255)), (panel_x + 100, panel_y + 180))
-    
-    return btn_alliance, btn_attaque
+    # On renvoie aussi l'état actuel pour que le clic sache quoi faire
+    return btn_action_1, btn_action_2, est_allie, est_en_guerre
 
 # --- CHARGEMENT DES DONNÉES ---
 dossier = os.path.dirname(os.path.abspath(__file__))
@@ -299,12 +354,17 @@ while running:
                     afficher_dashboard = False
 
                 elif afficher_dashboard:
-                    btn_all, btn_att = dessiner_action_panel(pays_selectionne_code, dernier_clic_x)
-                    if btn_all.collidepoint(mouse_pos):
-                        actions_joueur[pays_selectionne_code] = "ALLIANCE"
+                    # On récupère les 4 variables retournées par la fonction
+                    btn_all, btn_att, est_allie, est_en_guerre = dessiner_action_panel(pays_selectionne_code, dernier_clic_x)
+                    
+                    if btn_all.collidepoint(mouse_pos) and not est_en_guerre:
+                        # Si on est alliés on prévoit de rompre, sinon de s'allier
+                        actions_joueur[pays_selectionne_code] = "ROMPRE_ALLIANCE" if est_allie else "ALLIANCE"
                         clic_sur_ui = True
-                    elif btn_att.collidepoint(mouse_pos):
-                        actions_joueur[pays_selectionne_code] = "ATTAQUE"
+                        
+                    elif btn_att.collidepoint(mouse_pos) and not est_allie:
+                        # Si on est en guerre on prévoit la paix, sinon on attaque
+                        actions_joueur[pays_selectionne_code] = "PAIX" if est_en_guerre else "ATTAQUE"
                         clic_sur_ui = True
 
             # DÉTECTION SUR LA CARTE

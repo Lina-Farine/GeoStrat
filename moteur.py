@@ -16,6 +16,7 @@ def resoudre_tour(actions_joueur, etat_du_monde, nom_joueur):
     # ÉTAPE 2 : Diplomatie et Guerres
     for attaquant, ordres in toutes_les_actions.items():
         for cible, action in ordres.items():
+            
             if action == "ATTAQUE":
                 if cible not in etat_du_monde[attaquant]["en_guerre_contre"]:
                     etat_du_monde[attaquant]["en_guerre_contre"].append(cible)
@@ -26,7 +27,26 @@ def resoudre_tour(actions_joueur, etat_du_monde, nom_joueur):
             elif action == "ALLIANCE":
                 if cible not in etat_du_monde[attaquant]["alliances"]:
                     etat_du_monde[attaquant]["alliances"].append(cible)
+                    # L'alliance est réciproque
+                    if attaquant not in etat_du_monde[cible]["alliances"]:
+                        etat_du_monde[cible]["alliances"].append(attaquant)
                     print(f"🤝 ALLIANCE CONCLUE : {attaquant} s'allie avec {cible} !")
+
+            # --- NOUVELLES ACTIONS CI-DESSOUS ---
+            elif action == "ROMPRE_ALLIANCE":
+                if cible in etat_du_monde[attaquant]["alliances"]:
+                    etat_du_monde[attaquant]["alliances"].remove(cible)
+                if attaquant in etat_du_monde[cible]["alliances"]:
+                    etat_du_monde[cible]["alliances"].remove(attaquant)
+                print(f"💔 ALLIANCE ROMPUE : {attaquant} trahit {cible} !")
+
+            elif action == "PAIX":
+                # Dans un jeu simple, la paix proposée est automatiquement acceptée
+                if cible in etat_du_monde[attaquant]["en_guerre_contre"]:
+                    etat_du_monde[attaquant]["en_guerre_contre"].remove(cible)
+                if attaquant in etat_du_monde[cible]["en_guerre_contre"]:
+                    etat_du_monde[cible]["en_guerre_contre"].remove(attaquant)
+                print(f"🕊️ PAIX SIGNÉE : Fin du conflit entre {attaquant} et {cible}.")
 
     # ÉTAPE 3 : Calcul Mensuel des Ressources
     for pays, data in etat_du_monde.items():
