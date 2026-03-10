@@ -1,0 +1,980 @@
+{
+  "AF": {
+    "Habitants": 42647492,
+    "Nourriture": 12887450.7,
+    "Petrole": 0,
+    "Argent": 17152234636.8715
+  },
+  "AL": {
+    "Habitants": 2377128,
+    "Nourriture": 3079387.99,
+    "Petrole": 11.91,
+    "Argent": 27046429296.6673
+  },
+  "DZ": {
+    "Habitants": 46814308,
+    "Nourriture": 26275269.22,
+    "Petrole": 1411.137868769,
+    "Argent": 269322281664.773
+  },
+  "AO": {
+    "Habitants": 37885849,
+    "Nourriture": 29546488.12,
+    "Petrole": 1053.6510187573797,
+    "Argent": 100998916781.079
+  },
+  "AG": {
+    "Habitants": 93772,
+    "Nourriture": 9927.07,
+    "Petrole": 0,
+    "Argent": 2207622874.07407
+  },
+  "AZ": {
+    "Habitants": 10202830,
+    "Nourriture": 8550777.25,
+    "Petrole": 558.3772019592387,
+    "Argent": 74315882352.9412
+  },
+  "AR": {
+    "Habitants": 45696159,
+    "Nourriture": 169591565.75,
+    "Petrole": 1040.917358124891,
+    "Argent": 638365455340.04
+  },
+  "AU": {
+    "Habitants": 27196812,
+    "Nourriture": 105173177.12,
+    "Petrole": 326.322615589746,
+    "Argent": 1757022451652.83
+  },
+  "AT": {
+    "Habitants": 9177982,
+    "Nourriture": 10611880,
+    "Petrole": 22.742863951,
+    "Argent": 534790720466.822
+  },
+  "BH": {
+    "Habitants": 1588670,
+    "Nourriture": 40862.59,
+    "Petrole": 196.76609121,
+    "Argent": 47109734308.5106
+  },
+  "BD": {
+    "Habitants": 173562364,
+    "Nourriture": 100949018.84,
+    "Petrole": 9.433,
+    "Argent": 450119432068.852
+  },
+  "AM": {
+    "Habitants": 3033500,
+    "Nourriture": 1925780.42,
+    "Petrole": 0,
+    "Argent": 25955275380.0321
+  },
+  "BB": {
+    "Habitants": 282467,
+    "Nourriture": 87661.98000000001,
+    "Petrole": 1.001,
+    "Argent": 7498050000
+  },
+  "BE": {
+    "Habitants": 11858610,
+    "Nourriture": 13191100,
+    "Petrole": 24.70097857,
+    "Argent": 671370081636.406
+  },
+  "BT": {
+    "Habitants": 791524,
+    "Nourriture": 231401.13,
+    "Petrole": 0,
+    "Argent": 3012896789.24928
+  },
+  "BA": {
+    "Habitants": 3164253,
+    "Nourriture": 3299652,
+    "Petrole": 0.185221593,
+    "Argent": 29613572022.8993
+  },
+  "BW": {
+    "Habitants": 2521139,
+    "Nourriture": 282133.68,
+    "Petrole": 0,
+    "Argent": 19402063512.9066
+  },
+  "BR": {
+    "Habitants": 211998573,
+    "Nourriture": 1144082951.54,
+    "Petrole": 5133.950290959281,
+    "Argent": 2185821648943.86
+  },
+  "BZ": {
+    "Habitants": 417072,
+    "Nourriture": 1987994.44,
+    "Petrole": 0.7871234,
+    "Argent": 3203631800
+  },
+  "SB": {
+    "Habitants": 819198,
+    "Nourriture": 591420.29,
+    "Petrole": 0,
+    "Argent": 1583964703.75061
+  },
+  "BG": {
+    "Habitants": 6441421,
+    "Nourriture": 12881875,
+    "Petrole": 6.098772522,
+    "Argent": 113343355779.985
+  },
+  "BI": {
+    "Habitants": 14047786,
+    "Nourriture": 7569300.27,
+    "Petrole": 0,
+    "Argent": 3082433067.32634
+  },
+  "BY": {
+    "Habitants": 9132629,
+    "Nourriture": 19712979.98,
+    "Petrole": 25.487,
+    "Argent": 75961865471.9129
+  },
+  "KH": {
+    "Habitants": 17638801,
+    "Nourriture": 33238392.83,
+    "Petrole": 0,
+    "Argent": 46352647037.2406
+  },
+  "CM": {
+    "Habitants": 29123744,
+    "Nourriture": 29710511.79,
+    "Petrole": 58.311559306,
+    "Argent": 53296694320.2057
+  },
+  "CA": {
+    "Habitants": 41288599,
+    "Nourriture": 108539214.73,
+    "Petrole": 6294.926210922529,
+    "Argent": 2243636826633.76
+  },
+  "LK": {
+    "Habitants": 21916000,
+    "Nourriture": 12502443.54,
+    "Petrole": 0,
+    "Argent": 98963185509.6499
+  },
+  "TD": {
+    "Habitants": 20299123,
+    "Nourriture": 5273600.21,
+    "Petrole": 125,
+    "Argent": 19518819751.283
+  },
+  "CL": {
+    "Habitants": 19764771,
+    "Nourriture": 14445177.86,
+    "Petrole": 19.61254825874512,
+    "Argent": 330267137371.592
+  },
+  "CN": {
+    "Habitants": 1408975000,
+    "Nourriture": 1912914668.08,
+    "Petrole": 5361.5758372,
+    "Argent": 18743803170827.2
+  },
+  "CO": {
+    "Habitants": 52886363,
+    "Nourriture": 64351730.76,
+    "Petrole": 766.705126468,
+    "Argent": 418818154879.271
+  },
+  "KM": {
+    "Habitants": 866628,
+    "Nourriture": 372419.21,
+    "Petrole": 0,
+    "Argent": 1440991455.45188
+  },
+  "CR": {
+    "Habitants": 5129910,
+    "Nourriture": 12635173.69,
+    "Petrole": 0.4,
+    "Argent": 95350423176.5962
+  },
+  "HR": {
+    "Habitants": 3866200,
+    "Nourriture": 5770980,
+    "Petrole": 12.735094577,
+    "Argent": 92983810328.9088
+  },
+  "CU": {
+    "Habitants": 10979783,
+    "Nourriture": 12902029.56,
+    "Petrole": 27.04165346820021,
+    "Argent": 107352000000
+  },
+  "CY": {
+    "Habitants": 1358282,
+    "Nourriture": 287250,
+    "Petrole": 0,
+    "Argent": 37634533331.8902
+  },
+  "BJ": {
+    "Habitants": 14462724,
+    "Nourriture": 15114360.24,
+    "Petrole": 0,
+    "Argent": 21482643706.4249
+  },
+  "DK": {
+    "Habitants": 5976992,
+    "Nourriture": 14180130,
+    "Petrole": 83.87189775784881,
+    "Argent": 424524722037.047
+  },
+  "DM": {
+    "Habitants": 66205,
+    "Nourriture": 130190.35,
+    "Petrole": 0,
+    "Argent": 688881481.481481
+  },
+  "DO": {
+    "Habitants": 11427557,
+    "Nourriture": 18834149.01,
+    "Petrole": 0,
+    "Argent": 124282245638.568
+  },
+  "EC": {
+    "Habitants": 18135478,
+    "Nourriture": 23134770.83,
+    "Petrole": 473.781965591,
+    "Argent": 124676074700
+  },
+  "SV": {
+    "Habitants": 6338193,
+    "Nourriture": 8975934.62,
+    "Petrole": 0.003,
+    "Argent": 35364960000
+  },
+  "GQ": {
+    "Habitants": 1892516,
+    "Nourriture": 339595.15,
+    "Petrole": 82.76241585926992,
+    "Argent": 12765777677.0622
+  },
+  "ET": {
+    "Habitants": 132059767,
+    "Nourriture": 50498899.74,
+    "Petrole": 0,
+    "Argent": 149740297952.986
+  },
+  "ER": {
+    "Habitants": 3535603,
+    "Nourriture": 478864.58,
+    "Petrole": 0,
+    "Argent": 2065001626.01626
+  },
+  "EE": {
+    "Habitants": 1372341,
+    "Nourriture": 1639570,
+    "Petrole": 21,
+    "Argent": 43130419829.35
+  },
+  "FO": {
+    "Habitants": 54681,
+    "Nourriture": 1531.87,
+    "Petrole": 0,
+    "Argent": 4052937169.76536
+  },
+  "FJ": {
+    "Habitants": 928784,
+    "Nourriture": 1757533.24,
+    "Petrole": 0,
+    "Argent": 5968125909.27126
+  },
+  "FI": {
+    "Habitants": 5619911,
+    "Nourriture": 4957330,
+    "Petrole": 16.789848594,
+    "Argent": 298696961297.656
+  },
+  "FR": {
+    "Habitants": 68551653,
+    "Nourriture": 117102131,
+    "Petrole": 105.84081993,
+    "Argent": 3160442622465.08
+  },
+  "PF": {
+    "Habitants": 281807,
+    "Nourriture": 117121.05,
+    "Petrole": 0,
+    "Argent": 6323716355.05009
+  },
+  "DJ": {
+    "Habitants": 1168722,
+    "Nourriture": 47379.630000000005,
+    "Petrole": 0,
+    "Argent": 4152145939.98458
+  },
+  "GA": {
+    "Habitants": 2538952,
+    "Nourriture": 2070830.54,
+    "Petrole": 249.696457748,
+    "Argent": 20895684425.6752
+  },
+  "GE": {
+    "Habitants": 3699557,
+    "Nourriture": 1452874.05,
+    "Petrole": 0.219,
+    "Argent": 34189423544.9955
+  },
+  "DE": {
+    "Habitants": 83516593,
+    "Nourriture": 98951990,
+    "Petrole": 186.4906769,
+    "Argent": 4685592577804.69
+  },
+  "GH": {
+    "Habitants": 34427414,
+    "Nourriture": 59605074.62,
+    "Petrole": 203.607084504,
+    "Argent": 82308110386.4641
+  },
+  "KI": {
+    "Habitants": 134518,
+    "Nourriture": 193613.17,
+    "Petrole": 0,
+    "Argent": 307862564.489711
+  },
+  "GR": {
+    "Habitants": 10405134,
+    "Nourriture": 9909310,
+    "Petrole": 14.386936355,
+    "Argent": 256238371778.118
+  },
+  "GD": {
+    "Habitants": 117207,
+    "Nourriture": 22729.53,
+    "Petrole": 0,
+    "Argent": 1371918518.51852
+  },
+  "GT": {
+    "Habitants": 18406359,
+    "Nourriture": 37363197.41,
+    "Petrole": 5.54229613672797,
+    "Argent": 113199581158.203
+  },
+  "GN": {
+    "Habitants": 14754785,
+    "Nourriture": 18090272.76,
+    "Petrole": 0,
+    "Argent": 25008678293.4084
+  },
+  "GY": {
+    "Habitants": 831087,
+    "Nourriture": 2296868.74,
+    "Petrole": 894.9605,
+    "Argent": 24662709832.1343
+  },
+  "HT": {
+    "Habitants": 11772557,
+    "Nourriture": 4629074.25,
+    "Petrole": 0,
+    "Argent": 25224154990.7946
+  },
+  "HN": {
+    "Habitants": 10825703,
+    "Nourriture": 10921240.51,
+    "Petrole": 0.02,
+    "Argent": 37093565854.0437
+  },
+  "HU": {
+    "Habitants": 9562065,
+    "Nourriture": 18213970,
+    "Petrole": 47.365008103,
+    "Argent": 222722738925.641
+  },
+  "IS": {
+    "Habitants": 386506,
+    "Nourriture": 15911,
+    "Petrole": 0,
+    "Argent": 33255181468.9382
+  },
+  "IN": {
+    "Habitants": 1450935791,
+    "Nourriture": 1289293090.47,
+    "Petrole": 1003.1216308526598,
+    "Argent": 3909891533858.08
+  },
+  "ID": {
+    "Habitants": 283487931,
+    "Nourriture": 425367465.58,
+    "Petrole": 856.02443226,
+    "Argent": 1396300098190.97
+  },
+  "IR": {
+    "Habitants": 91567738,
+    "Nourriture": 70492998.05,
+    "Petrole": 4707.333669267,
+    "Argent": 475252089215.416
+  },
+  "IQ": {
+    "Habitants": 46042015,
+    "Nourriture": 9596868.64,
+    "Petrole": 4543.461965409515,
+    "Argent": 279641257615.385
+  },
+  "IE": {
+    "Habitants": 5395790,
+    "Nourriture": 2632120,
+    "Petrole": 0.649761025,
+    "Argent": 609157459747.205
+  },
+  "IL": {
+    "Habitants": 9974400,
+    "Nourriture": 3380210.94,
+    "Petrole": 20.695702198,
+    "Argent": 540379921261.681
+  },
+  "IT": {
+    "Habitants": 58952704,
+    "Nourriture": 49543290,
+    "Petrole": 123.05566754,
+    "Argent": 2380825077243.59
+  },
+  "JM": {
+    "Habitants": 2839175,
+    "Nourriture": 1593662.72,
+    "Petrole": 2.28470682702985,
+    "Argent": 22014397089.7689
+  },
+  "JP": {
+    "Habitants": 123975371,
+    "Nourriture": 32606172.64,
+    "Petrole": 102.02965963,
+    "Argent": 4027597523550.58
+  },
+  "KZ": {
+    "Habitants": 20592571,
+    "Nourriture": 39801515.62,
+    "Petrole": 2050.605020020136,
+    "Argent": 291480274648.826
+  },
+  "JO": {
+    "Habitants": 11552876,
+    "Nourriture": 2490673.96,
+    "Petrole": 0.323542252,
+    "Argent": 53352289577.4648
+  },
+  "KE": {
+    "Habitants": 56432944,
+    "Nourriture": 30219934.63,
+    "Petrole": 0,
+    "Argent": 120339557905.932
+  },
+  "KP": {
+    "Habitants": 26498823,
+    "Nourriture": 11690364.67,
+    "Petrole": 0.101180751,
+    "Argent": 16446632290
+  },
+  "KR": {
+    "Habitants": 51751065,
+    "Nourriture": 18236599.29,
+    "Petrole": 102.62660048,
+    "Argent": 1875388209406.8
+  },
+  "KW": {
+    "Habitants": 4897263,
+    "Nourriture": 415996.63,
+    "Petrole": 2796.425499713,
+    "Argent": 160227273053.334
+  },
+  "KG": {
+    "Habitants": 7221868,
+    "Nourriture": 6256425.35,
+    "Petrole": 5.431,
+    "Argent": 17478259659.2625
+  },
+  "LB": {
+    "Habitants": 5805962,
+    "Nourriture": 2753836.67,
+    "Petrole": 0,
+    "Argent": 20078620356.9931
+  },
+  "LS": {
+    "Habitants": 2337423,
+    "Nourriture": 249570.71,
+    "Petrole": 0,
+    "Argent": 2271759454.51107
+  },
+  "LV": {
+    "Habitants": 1866124,
+    "Nourriture": 3803300,
+    "Petrole": 1.595,
+    "Argent": 43684254432.3609
+  },
+  "LR": {
+    "Habitants": 5612817,
+    "Nourriture": 2001993.99,
+    "Petrole": 0,
+    "Argent": 4779300900
+  },
+  "LT": {
+    "Habitants": 2888278,
+    "Nourriture": 8715630,
+    "Petrole": 8.893034382,
+    "Argent": 84869215513.3648
+  },
+  "LU": {
+    "Habitants": 677012,
+    "Nourriture": 193100,
+    "Petrole": 0,
+    "Argent": 93279851863.4062
+  },
+  "MG": {
+    "Habitants": 31964956,
+    "Nourriture": 14997148.51,
+    "Petrole": 0,
+    "Argent": 17420501490.1231
+  },
+  "MW": {
+    "Habitants": 21655286,
+    "Nourriture": 30068133.55,
+    "Petrole": 0,
+    "Argent": 11316411329.4619
+  },
+  "MY": {
+    "Habitants": 35557673,
+    "Nourriture": 107434345.09,
+    "Petrole": 620.7255429600001,
+    "Argent": 422227005428.688
+  },
+  "MV": {
+    "Habitants": 527799,
+    "Nourriture": 9950.48,
+    "Petrole": 0,
+    "Argent": 7061608267.25451
+  },
+  "ML": {
+    "Habitants": 24478595,
+    "Nourriture": 19514035.62,
+    "Petrole": 0,
+    "Argent": 26794747239.8805
+  },
+  "MT": {
+    "Habitants": 568847,
+    "Nourriture": 54680,
+    "Petrole": 0,
+    "Argent": 24971574502.4475
+  },
+  "MR": {
+    "Habitants": 5169395,
+    "Nourriture": 670143.54,
+    "Petrole": 0,
+    "Argent": 10908045686.8808
+  },
+  "MU": {
+    "Habitants": 1245779,
+    "Nourriture": 2379413.03,
+    "Petrole": 0,
+    "Argent": 14937861786.17
+  },
+  "MX": {
+    "Habitants": 130861007,
+    "Nourriture": 134976730.94,
+    "Petrole": 1864.18011776,
+    "Argent": 1856365616165.94
+  },
+  "MN": {
+    "Habitants": 3524788,
+    "Nourriture": 1045485.8,
+    "Petrole": 13.474,
+    "Argent": 23794540024.5132
+  },
+  "MA": {
+    "Habitants": 38081173,
+    "Nourriture": 18466006.52,
+    "Petrole": 0.025,
+    "Argent": 160610994054.734
+  },
+  "MZ": {
+    "Habitants": 34631766,
+    "Nourriture": 18514155.95,
+    "Petrole": 0,
+    "Argent": 22745341305.0622
+  },
+  "OM": {
+    "Habitants": 5281538,
+    "Nourriture": 2178851.07,
+    "Petrole": 1026.87723027,
+    "Argent": 107137198769.386
+  },
+  "NR": {
+    "Habitants": 11947,
+    "Nourriture": 2885.98,
+    "Petrole": 0,
+    "Argent": 162588620.632234
+  },
+  "NP": {
+    "Habitants": 29651054,
+    "Nourriture": 25205366.28,
+    "Petrole": 0,
+    "Argent": 42914268286.7109
+  },
+  "NC": {
+    "Habitants": 292639,
+    "Nourriture": 51581.58,
+    "Petrole": 0,
+    "Argent": 8548919387.12607
+  },
+  "VU": {
+    "Habitants": 327777,
+    "Nourriture": 729531.26,
+    "Petrole": 0,
+    "Argent": 1117972034.22642
+  },
+  "NZ": {
+    "Habitants": 5287500,
+    "Nourriture": 4336196.14,
+    "Petrole": 18.696843722,
+    "Argent": 260172385097.616
+  },
+  "NE": {
+    "Habitants": 27032412,
+    "Nourriture": 18938461.72,
+    "Petrole": 108.387583094,
+    "Argent": 19876128485.7857
+  },
+  "NG": {
+    "Habitants": 232679478,
+    "Nourriture": 228760099.74,
+    "Petrole": 1691.9779869533827,
+    "Argent": 252261880141.151
+  },
+  "NO": {
+    "Habitants": 5572279,
+    "Nourriture": 1766610.75,
+    "Petrole": 2107.6456156166773,
+    "Argent": 483592648313.301
+  },
+  "PK": {
+    "Habitants": 251269164,
+    "Nourriture": 170352398.43,
+    "Petrole": 75.23848627910105,
+    "Argent": 371570000121.266
+  },
+  "PA": {
+    "Habitants": 4515577,
+    "Nourriture": 3641034.83,
+    "Petrole": 0,
+    "Argent": 86523959131.7472
+  },
+  "PG": {
+    "Habitants": 10576502,
+    "Nourriture": 10287916.07,
+    "Petrole": 31.249,
+    "Argent": 31800428265.5246
+  },
+  "PY": {
+    "Habitants": 6929153,
+    "Nourriture": 28357693.89,
+    "Petrole": 2.044037165955257,
+    "Argent": 44458118397.4445
+  },
+  "PE": {
+    "Habitants": 34217848,
+    "Nourriture": 40403869.31,
+    "Petrole": 124.072938162,
+    "Argent": 289221969062.941
+  },
+  "PH": {
+    "Habitants": 115843670,
+    "Nourriture": 88103381.48,
+    "Petrole": 14.330871014,
+    "Argent": 461617509782.355
+  },
+  "PL": {
+    "Habitants": 36559233,
+    "Nourriture": 72167000,
+    "Petrole": 43.537926254,
+    "Argent": 917767106146.761
+  },
+  "PT": {
+    "Habitants": 10694681,
+    "Nourriture": 7604190,
+    "Petrole": 12.376079467,
+    "Argent": 313271185085.102
+  },
+  "GW": {
+    "Habitants": 2201352,
+    "Nourriture": 1080240.31,
+    "Petrole": 0,
+    "Argent": 2218393804.54798
+  },
+  "TL": {
+    "Habitants": 1400638,
+    "Nourriture": 294437.09,
+    "Petrole": 2,
+    "Argent": 1865608515.41321
+  },
+  "PR": {
+    "Habitants": 3203295,
+    "Nourriture": 334916.64,
+    "Petrole": 0,
+    "Argent": 126029527033.705
+  },
+  "QA": {
+    "Habitants": 2857822,
+    "Nourriture": 142012.24,
+    "Petrole": 1906.41826301,
+    "Argent": 219162637362.637
+  },
+  "RO": {
+    "Habitants": 19051804,
+    "Nourriture": 26151340,
+    "Petrole": 68.44085618,
+    "Argent": 382564217988.866
+  },
+  "RU": {
+    "Habitants": 143533851,
+    "Nourriture": 240499204.92,
+    "Petrole": 10725.325241102328,
+    "Argent": 2173835806671.66
+  },
+  "RW": {
+    "Habitants": 14256567,
+    "Nourriture": 8923024.93,
+    "Petrole": 0,
+    "Argent": 14251642235.0968
+  },
+  "KN": {
+    "Habitants": 46843,
+    "Nourriture": 7100.97,
+    "Petrole": 0,
+    "Argent": 1122388888.88889
+  },
+  "LC": {
+    "Habitants": 179744,
+    "Nourriture": 33475.16,
+    "Petrole": 0,
+    "Argent": 2549062962.96296
+  },
+  "ST": {
+    "Habitants": 235536,
+    "Nourriture": 103513.4,
+    "Petrole": 0,
+    "Argent": 822154621.088897
+  },
+  "SA": {
+    "Habitants": 35300280,
+    "Nourriture": 7371323.04,
+    "Petrole": 11720.04595242,
+    "Argent": 1239804533333.33
+  },
+  "SN": {
+    "Habitants": 18501984,
+    "Nourriture": 11916434.73,
+    "Petrole": 100,
+    "Argent": 32808056600.9436
+  },
+  "SC": {
+    "Habitants": 121354,
+    "Nourriture": 12199.44,
+    "Petrole": 0,
+    "Argent": 2167239562.46013
+  },
+  "SL": {
+    "Habitants": 8642022,
+    "Nourriture": 6331914.149999999,
+    "Petrole": 0,
+    "Argent": 6971127235.3123
+  },
+  "SG": {
+    "Habitants": 6036860,
+    "Nourriture": 19385.77,
+    "Petrole": 20.54328622,
+    "Argent": 547386645891.847
+  },
+  "SK": {
+    "Habitants": 5422069,
+    "Nourriture": 6210500,
+    "Petrole": 6.425416112,
+    "Argent": 140934076532.375
+  },
+  "SI": {
+    "Habitants": 2127400,
+    "Nourriture": 1006038,
+    "Petrole": 0,
+    "Argent": 72972015197.3859
+  },
+  "SO": {
+    "Habitants": 19009151,
+    "Nourriture": 860381.29,
+    "Petrole": 0,
+    "Argent": 11967000000
+  },
+  "ZA": {
+    "Habitants": 64007187,
+    "Nourriture": 48964139.51,
+    "Petrole": 96.06405623,
+    "Argent": 401144998373.585
+  },
+  "ZW": {
+    "Habitants": 16634373,
+    "Nourriture": 13116417.91,
+    "Petrole": 0.8,
+    "Argent": 41539411516.4448
+  },
+  "ES": {
+    "Habitants": 48848840,
+    "Nourriture": 66733659,
+    "Petrole": 77.26850869,
+    "Argent": 1725671652742.19
+  },
+  "SD": {
+    "Habitants": 50448963,
+    "Nourriture": 22306689.82,
+    "Petrole": 31.804113602,
+    "Argent": 49672435513.1126
+  },
+  "SR": {
+    "Habitants": 634431,
+    "Nourriture": 378162.73,
+    "Petrole": 11.484596485,
+    "Argent": 4416775112.09627
+  },
+  "SE": {
+    "Habitants": 10569709,
+    "Nourriture": 8975860,
+    "Petrole": 13.918654211,
+    "Argent": 603715224265.798
+  },
+  "CH": {
+    "Habitants": 9005582,
+    "Nourriture": 3009379.22,
+    "Petrole": 1.186783718,
+    "Argent": 936564198048.516
+  },
+  "TJ": {
+    "Habitants": 10590927,
+    "Nourriture": 7098365.12,
+    "Petrole": 0.316,
+    "Argent": 14204575548.5536
+  },
+  "TH": {
+    "Habitants": 71668011,
+    "Nourriture": 188428234.65,
+    "Petrole": 402.01369077,
+    "Argent": 526517658841.684
+  },
+  "TG": {
+    "Habitants": 9515236,
+    "Nourriture": 4908328.11,
+    "Petrole": 0,
+    "Argent": 10651180146.531
+  },
+  "TO": {
+    "Habitants": 104175,
+    "Nourriture": 131855.38,
+    "Petrole": 0,
+    "Argent": 591139749.44287
+  },
+  "TT": {
+    "Habitants": 1368333,
+    "Nourriture": 117353.16,
+    "Petrole": 71.39735488382723,
+    "Argent": 25633544529.4849
+  },
+  "AE": {
+    "Habitants": 10986400,
+    "Nourriture": 694506.65,
+    "Petrole": 4759.430573916055,
+    "Argent": 552324846834.581
+  },
+  "TN": {
+    "Habitants": 12277109,
+    "Nourriture": 9146783.33,
+    "Petrole": 25.743188032,
+    "Argent": 51332285656.5422
+  },
+  "TM": {
+    "Habitants": 7494498,
+    "Nourriture": 5050215.11,
+    "Petrole": 274.642595790983,
+    "Argent": 51387209872.2994
+  },
+  "TV": {
+    "Habitants": 9646,
+    "Nourriture": 4081.7,
+    "Petrole": 0,
+    "Argent": 62280311.5852172
+  },
+  "UG": {
+    "Habitants": 50015092,
+    "Nourriture": 30858941.21,
+    "Petrole": 0,
+    "Argent": 53911907086.1525
+  },
+  "UA": {
+    "Habitants": 37860221,
+    "Nourriture": 121918774.26,
+    "Petrole": 7.204039172,
+    "Argent": 190741262414.705
+  },
+  "EG": {
+    "Habitants": 116538258,
+    "Nourriture": 98019763.07,
+    "Petrole": 622.3833071372685,
+    "Argent": 389059911003.566
+  },
+  "GB": {
+    "Habitants": 69226000,
+    "Nourriture": 37646107.42,
+    "Petrole": 689.6994355397135,
+    "Argent": 3686033044482.13
+  },
+  "US": {
+    "Habitants": 340110988,
+    "Nourriture": 729594267.29,
+    "Petrole": 24153.244,
+    "Argent": 28750956130731.2
+  },
+  "BF": {
+    "Habitants": 23548781,
+    "Nourriture": 12038580.92,
+    "Petrole": 0,
+    "Argent": 23124729853.0218
+  },
+  "UY": {
+    "Habitants": 3386588,
+    "Nourriture": 8744757.3,
+    "Petrole": 1.411807506,
+    "Argent": 80961511073.5797
+  },
+  "UZ": {
+    "Habitants": 36361859,
+    "Nourriture": 33776268.96,
+    "Petrole": 57.06071618666667,
+    "Argent": 114965293466.611
+  },
+  "VE": {
+    "Habitants": 28405543,
+    "Nourriture": 13797887.07,
+    "Petrole": 1044.247533574,
+    "Argent": 119802963257.783
+  },
+  "WS": {
+    "Habitants": 218019,
+    "Nourriture": 134646.39,
+    "Petrole": 0,
+    "Argent": 1175749785.65113
+  },
+  "YE": {
+    "Habitants": 40583164,
+    "Nourriture": 3082559.27,
+    "Petrole": 15.202361501,
+    "Argent": 28134000000
+  },
+  "ZM": {
+    "Habitants": 21314956,
+    "Nourriture": 10878629.2,
+    "Petrole": 0.101180751,
+    "Argent": 25303185342.2511
+  }
+}
