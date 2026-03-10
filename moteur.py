@@ -17,6 +17,11 @@ def resoudre_tour(actions_joueur, etat_du_monde, nom_joueur):
     for attaquant, ordres in toutes_les_actions.items():
         for cible, action in ordres.items():
             
+            # Si A veut s'allier à B, mais B attaque A
+            if action == "ALLIANCE" and toutes_les_actions.get(cible, {}).get(attaquant) == "ATTAQUE":
+                print(f"🚫 L'alliance entre {attaquant} et {cible} a échoué : la guerre a éclaté !")
+                del ordres[cible] # On annule la demande d'alliance
+
             if action == "ATTAQUE":
                 if cible not in etat_du_monde[attaquant]["en_guerre_contre"]:
                     etat_du_monde[attaquant]["en_guerre_contre"].append(cible)
@@ -70,13 +75,40 @@ def resoudre_tour(actions_joueur, etat_du_monde, nom_joueur):
 
 def simulation_appel_ia(etat_du_monde, nom_joueur):
     actions_ia = {}
-    pays_ia = [p for p in etat_du_monde.keys() if p != nom_joueur]
+    tous_pays = list(etat_du_monde.keys())
     
-    for pays in pays_ia:
+    for pays in tous_pays:
+        if pays == nom_joueur: continue
+        
         actions_ia[pays] = {}
-        if random.random() < 0.05: # 5% de chance d'attaquer
-            cible = random.choice(list(etat_du_monde.keys()))
-            if cible != pays:
-                actions_ia[pays][cible] = "ATTAQUE"
-                
+        data = etat_du_monde[pays]
+        
+        # L'IA regarde ses voisins/ennemis
+        for cible in tous_pays:
+            if cible == pays: continue
+            
+            est_allie = cible in data["alliances"]
+            est_en_guerre = cible in data["en_guerre_contre"]
+            
+            # --- RÈGLE 1 : Si en guerre, peut-elle demander la paix ? ---
+            if est_en_guerre:
+                # Si sa satisfaction est basse, elle demande la paix
+                if data["ressources"]["S"] < 40 and random.random() < 0.3:
+                    actions_ia[pays][cible] = "PAIX"
+            
+            # --- RÈGLE 2 : Si pas allié et pas en guerre, peut-elle attaquer ? ---
+            elif not est_allie and not est_en_guerre:
+                # 2% de chance de déclarer une guerre au hasard
+                if random.random() < 0.02:
+                    actions_ia[pays][cible] = "ATTAQUE"
+                # 5% de chance de proposer une alliance
+                elif random.random() < 0.05:
+                    actions_ia[pays][cible] = "ALLIANCE"
+            
+            # --- RÈGLE 3 : Peut-elle rompre une alliance ? ---
+            elif est_allie:
+                # Si elle n'a plus d'argent, elle peut rompre l'alliance (coûteux)
+                if data["ressources"]["A"] < 0 and random.random() < 0.01:
+                    actions_ia[pays][cible] = "ROMPRE_ALLIANCE"
+                    
     return actions_ia

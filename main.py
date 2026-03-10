@@ -206,38 +206,39 @@ def dessiner_action_panel(code_cible, clic_x):
     btn_action_1 = pygame.Rect(panel_x + 50, panel_y + 100, 300, 50)
     btn_action_2 = pygame.Rect(panel_x + 50, panel_y + 170, 300, 50)
     
-    # --- LOGIQUE DIPLOMATIQUE ---
+    # --- LOGIQUE DE VERROUILLAGE ---
     monde = moteur.etat_jeu["monde"]
     est_allie = code_cible in monde[pays_joueur]["alliances"]
     est_en_guerre = code_cible in monde[pays_joueur]["en_guerre_contre"]
     action_choisie = actions_joueur.get(code_cible)
 
-    # Textes des boutons
-    texte_btn_1 = "Rompre l'Alliance" if est_allie else "Proposer Alliance"
-    texte_btn_2 = "Signer la Paix" if est_en_guerre else "Déclarer la Guerre"
-
-    # Couleurs du bouton 1 (Alliance / Rupture)
+    # 1. Bouton Alliance / Rupture
     if est_en_guerre:
-        couleur_1 = (60, 60, 60) # Grisé (Impossible de s'allier en temps de guerre)
+        couleur_1 = (40, 40, 40) # Noirâtre (Bloqué)
+        label_1 = "Guerre en cours (Alliance impossible)"
     elif est_allie:
         couleur_1 = (200, 100, 50) if action_choisie == "ROMPRE_ALLIANCE" else (70, 70, 70)
+        label_1 = "Rompre l'Alliance"
     else:
         couleur_1 = (50, 150, 50) if action_choisie == "ALLIANCE" else (70, 70, 70)
+        label_1 = "Proposer Alliance"
 
-    # Couleurs du bouton 2 (Guerre / Paix)
+    # 2. Bouton Guerre / Paix
     if est_allie:
-        couleur_2 = (60, 60, 60) # Grisé (Impossible d'attaquer un allié sans rompre l'alliance d'abord)
+        couleur_2 = (40, 40, 40) # Noirâtre (Bloqué)
+        label_2 = "Allié (Attaque impossible)"
     elif est_en_guerre:
         couleur_2 = (50, 150, 200) if action_choisie == "PAIX" else (70, 70, 70)
+        label_2 = "Signer la Paix"
     else:
         couleur_2 = (200, 50, 50) if action_choisie == "ATTAQUE" else (70, 70, 70)
+        label_2 = "Déclarer la Guerre"
 
-    # Dessin des boutons
+    # Dessin
     pygame.draw.rect(screen, couleur_1, btn_action_1, border_radius=5)
     pygame.draw.rect(screen, couleur_2, btn_action_2, border_radius=5)
-    
-    screen.blit(font_texte.render(texte_btn_1, True, (255,255,255)), (panel_x + 100, panel_y + 110))
-    screen.blit(font_texte.render(texte_btn_2, True, (255,255,255)), (panel_x + 100, panel_y + 180))
+    screen.blit(font_texte.render(label_1, True, (255, 255, 255)), (panel_x + 60, panel_y + 110))
+    screen.blit(font_texte.render(label_2, True, (255, 255, 255)), (panel_x + 60, panel_y + 180))
     
     # On renvoie aussi l'état actuel pour que le clic sache quoi faire
     return btn_action_1, btn_action_2, est_allie, est_en_guerre

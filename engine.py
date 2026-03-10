@@ -15,16 +15,35 @@ class GameEngine:
             return json.load(f)
 
     def nouvelle_partie(self, pays_joueur):
-        print(f"🌍 Création d'un nouveau monde. Joueur: {pays_joueur}")
+        print(f"🌍 Création d'un nouveau monde (Contexte 2026). Joueur: {pays_joueur}")
         stats_base = self._charger_stats_base()
         
+        chemin_diplo = os.path.join(self.dossier, "data", "situation_initiale.json")
+        with open(chemin_diplo, 'r', encoding='utf-8') as f:
+            diplo_initiale = json.load(f)
+        
         monde = {}
+        # 1. On charge d'abord les données brutes
         for code_pays, stats in stats_base.items():
+            diplo = diplo_initiale.get(code_pays, {"alliances": [], "en_guerre_contre": []})
             monde[code_pays] = {
                 "ressources": stats.copy(),
-                "alliances": [],
-                "en_guerre_contre": []
+                "alliances": diplo["alliances"],
+                "en_guerre_contre": diplo["en_guerre_contre"]
             }
+
+        # 2. SYMÉTRISATION AUTOMATIQUE (La sécurité)
+        # On parcourt chaque pays pour s'assurer que les relations sont réciproques
+        for pays_a, data in monde.items():
+            # Pour les guerres
+            for pays_b in data["en_guerre_contre"]:
+                if pays_b in monde and pays_a not in monde[pays_b]["en_guerre_contre"]:
+                    monde[pays_b]["en_guerre_contre"].append(pays_a)
+            
+            # Pour les alliances (même logique)
+            for pays_b in data["alliances"]:
+                if pays_b in monde and pays_a not in monde[pays_b]["alliances"]:
+                    monde[pays_b]["alliances"].append(pays_a)
             
         self.etat_jeu = {
             "tour": 1,
