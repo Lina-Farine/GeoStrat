@@ -1,0 +1,20 @@
+{
+    "metadata": {
+        "tour": 1,
+        "nom_joueur": "US"
+    },
+    "actions": {
+        "US": {
+            "DZ": "ATTAQUE"
+        },
+        "KR": {
+            "KP": "ATTAQUE"
+        },
+        "IL": {
+            "IR": "ATTAQUE"
+        },
+        "RU": {
+            "UA": "ATTAQUE"
+        }
+    }
+}

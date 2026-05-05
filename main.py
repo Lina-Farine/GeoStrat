@@ -3,8 +3,11 @@ import pygame
 import sys
 import json
 import os
+
 from engine import GameEngine
 from moteur import resoudre_tour
+from appel_ia import generer_tour_ia
+
 
 moteur = GameEngine()
 # On essaie de charger une partie existante au lancement
@@ -266,6 +269,25 @@ def dessiner_menu():
     
     return btn_neuf, btn_load
 
+def dessiner_compteur_tour():
+    """Affiche le numéro du tour juste au-dessus du bloc légende."""
+    if phase_de_jeu != "JOUER": return
+    
+    tour = moteur.etat_jeu["tour"]
+    
+    # Positionnement : au-dessus de la légende (base_y de la légende - 40)
+    # On utilise les mêmes coordonnées que ta légende pour l'alignement
+    x_pos = 20
+    y_pos = HEIGHT - 140 - 60 # 140 (hauteur légende) + 20 (marge) + 40 (décalage)
+    
+    # Petit badge pour le tour
+    rect_tour = pygame.Rect(x_pos, y_pos, 150, 40)
+    pygame.draw.rect(screen, (30, 30, 50), rect_tour, border_radius=5)
+    pygame.draw.rect(screen, (200, 200, 200), rect_tour, 2, border_radius=5)
+    
+    texte_tour = font_titre.render(f"TOUR : {tour}", True, (255, 255, 255))
+    screen.blit(texte_tour, (x_pos + 15, y_pos + 5))
+
 # --- CHARGEMENT DES DONNÉES ---
 dossier = os.path.dirname(os.path.abspath(__file__))
 
@@ -380,17 +402,30 @@ while running:
                         
             elif phase_de_jeu == "JOUER":
                 if rect_fin_tour.collidepoint(mouse_pos):
-                    print(f"⏳ Résolution du tour {moteur.etat_jeu['tour']} en cours...")
-                    nouveau_monde = resoudre_tour(actions_joueur, moteur.etat_jeu["monde"], pays_joueur)
-                    moteur.etat_jeu["monde"] = nouveau_monde
-                    moteur.avancer_tour()
+                    print(f"⏳ Simulation du tour {moteur.etat_jeu['tour']}...")
                     
-                    # ---> MISE À JOUR ICI : On recalcule les rouges et verts car des alliances/guerres ont pu éclater !
-                    calques_diplo = maj_calques_diplomatie()
+                    # 1. On appelle l'IA pour qu'elle génère le fichier "actions_tour.json"
+                    # On lui passe l'état actuel, tes actions cliquées, et ton code pays (ex: "US")
+                    succes_ia = generer_tour_ia(moteur.etat_jeu, actions_joueur, pays_joueur)
                     
-                    actions_joueur.clear()
-                    clic_sur_ui = True
-                    afficher_dashboard = False
+                    if succes_ia:
+                        chemin_actions = os.path.join(dossier, "data", "actions_tour.json")
+                        
+                        # --- C'EST ICI QU'ON APPELLE LA CONSOLE ---
+                        with open(chemin_actions, 'r', encoding='utf-8') as f:
+                            data_json = json.load(f)
+                            # On passe bien data_json["actions"] à l'affichage
+                            moteur.afficher_interface_tour(data_json["actions"], CODES_TO_NAMES)
+
+                        nouveau_monde = resoudre_tour(moteur.etat_jeu["monde"], chemin_actions)
+                        moteur.etat_jeu["monde"] = nouveau_monde
+                        moteur.avancer_tour()
+                        
+                        calques_diplo = maj_calques_diplomatie()
+                        actions_joueur.clear()
+                        afficher_dashboard = False
+                    else:
+                        print("❌ L'IA n'a pas pu répondre. Vérifie ta clé API ou ta connexion.")
 
                 elif afficher_dashboard:
                     # On récupère les 4 variables retournées par la fonction
@@ -434,9 +469,9 @@ while running:
         pygame.draw.rect(screen, (200, 150, 0), rect_fin_tour, border_radius=10)
         screen.blit(font_titre.render("FIN DE TOUR", True, (0,0,0)), (rect_fin_tour.x + 30, rect_fin_tour.y + 15))
         
-        # On ajoute nos deux nouveaux éléments UI !
         dessiner_top_bar()
         dessiner_legende()
+        dessiner_compteur_tour() # <--- AJOUTE CETTE LIGNE ICI
         
         if afficher_dashboard:
             dessiner_action_panel(pays_selectionne_code, dernier_clic_x)

@@ -1,0 +1,53 @@
+# --- ÉTAPE 4 : MISE À JOUR ÉCONOMIQUE MENSUELLE ---
+    # On charge les deltas annuels pour les calculs
+    with open(os.path.join(self.dossier, "data", "stats_par_an.json"), 'r') as f:
+        stats_annuelles = json.load(f)
+
+    for pays, data in etat_du_monde.items():
+        stats = data["ressources"]
+        nb_guerres = len(data["en_guerre_contre"])
+        delta_an = stats_annuelles.get(pays, {"H": 0, "N": 0, "P": 0, "A": 0})
+
+        # 1. Évolution de la Population (H)
+        # On ajoute le gain mensuel (Delta / 12)
+        stats["H"] += (delta_an["H"] / 12)
+
+        # 2. Production et Consommation de Nourriture (N)
+        # Gain mensuel de production moins la consommation de la population
+        prod_mensuelle = delta_an["N"] / 12
+        stats["N"] += prod_mensuelle
+        stats["N"] -= (stats["H"] * 0.1)  # Consommation mensuelle de nourriture (0.1 par habitant)
+        
+        # 3. Gestion de l'Argent (A)
+        # Revenu passif : 10% annuel divisé par 12 mois
+        revenu_interets = (stats["A"] * 0.10) /     12                                      #ATTENTION
+        stats["A"] += revenu_interets + (delta_an["A"] / 12)
+
+        # 4. Énergie et Pétrole (P)
+        stats["P"] += (delta_an["P"] / 12)                                                  
+        stats["P"] -= (stats["H"] * 0.05)  # Consommation mensuelle de pétrole (0.05 par habitant)
+
+        # 5. Malus de Guerre (Impact mensuel cumulé)
+        if nb_guerres > 0:
+            stats["S"] -= (2 * nb_guerres)  # Baisse de satisfaction mensuelle
+            stats["A"] -= (50 * nb_guerres) # Coût financier de la mobilisation
+            stats["H"] -= (0.5 * nb_guerres) # Pertes humaines (en milliers)
+            
+            # Consommation de pétrole doublée en guerre
+            stats["P"] -= (10 * nb_guerres)
+
+        # 6. Conséquences de la Famine ou Faillite
+        if stats["N"] < 0:
+            stats["N"] = 0
+            stats["S"] -= 5 # La population gronde si elle a faim
+        
+        if stats["A"] < 0:
+            stats["S"] -= 2 # Crise économique
+
+        if stats["P"] < 0:
+            stats["P"] = 0
+            stats["S"] -= 3 # Pénurie énergétique
+            
+        # Sécurité : Pas de population ou satisfaction négative
+        stats["S"] = max(0, min(100, stats["S"]))
+        stats["H"] = max(0.1, stats["H"])

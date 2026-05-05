@@ -1,126 +1,86 @@
-import random
+import json
+import os
 
-def resoudre_tour(actions_joueur, etat_du_monde, nom_joueur):
+def resoudre_tour(etat_du_monde, chemin_actions):
     """
-    Prend l'état actuel du monde, calcule les conséquences des actions,
-    et renvoie le nouvel état du monde mis à jour.
+    Lit actions_tour.json et met à jour l'état du monde.
     """
-    
-    # ÉTAPE 1 : Appel à l'IA
-    actions_ia = simulation_appel_ia(etat_du_monde, nom_joueur)
-    
-    # Fusion des actions
-    toutes_les_actions = {nom_joueur: actions_joueur}
-    toutes_les_actions.update(actions_ia)
+    if not os.path.exists(chemin_actions):
+        return etat_du_monde
 
-    # ÉTAPE 2 : Diplomatie et Guerres
-    for attaquant, ordres in toutes_les_actions.items():
-        for cible, action in list(ordres.items()):
-            
-            # Si A veut s'allier à B...
-            if action == "ALLIANCE":
-                # ...mais que B attaque A (ou que A attaque B dans ses autres ordres)
-                b_attaque_a = toutes_les_actions.get(cible, {}).get(attaquant) == "ATTAQUE"
-                a_attaque_b = toutes_les_actions.get(attaquant, {}).get(cible) == "ATTAQUE"
-                
-                if b_attaque_a or a_attaque_b:
-                    print(f"🚫 L'alliance entre {attaquant} et {cible} a échoué : la guerre a éclaté !")
-                    
-                    # On supprime la demande d'alliance chez les DEUX pays pour être sûr
-                    if cible in toutes_les_actions[attaquant]:
-                        del toutes_les_actions[attaquant][cible]
-                    if attaquant in toutes_les_actions.get(cible, {}):
-                        # On ne supprime que si c'était une alliance (on laisse l'attaque)
-                        if toutes_les_actions[cible][attaquant] == "ALLIANCE":
-                            del toutes_les_actions[cible][attaquant]
+    with open(chemin_actions, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+        # IMPORTANT : On ne prend que la partie "actions" pour la boucle
+        toutes_les_actions = data.get("actions", {})
 
-            if action == "ATTAQUE":
-                if cible not in etat_du_monde[attaquant]["en_guerre_contre"]:
-                    etat_du_monde[attaquant]["en_guerre_contre"].append(cible)
-                if attaquant not in etat_du_monde[cible]["en_guerre_contre"]:
-                    etat_du_monde[cible]["en_guerre_contre"].append(attaquant)
-                    print(f"⚔️ GUERRE DÉCLARÉE : {attaquant} attaque {cible} !")
-                    
-            elif action == "ALLIANCE":
-                if cible not in etat_du_monde[attaquant]["alliances"]:
-                    etat_du_monde[attaquant]["alliances"].append(cible)
-                    # L'alliance est réciproque
-                    if attaquant not in etat_du_monde[cible]["alliances"]:
-                        etat_du_monde[cible]["alliances"].append(attaquant)
-                    print(f"🤝 ALLIANCE CONCLUE : {attaquant} s'allie avec {cible} !")
+    # Initialisation des clés de stockage si absentes
+    for pays in etat_du_monde:
+        if "alliances_en_attente" not in etat_du_monde[pays]:
+            etat_du_monde[pays]["alliances_en_attente"] = []
 
-            # --- NOUVELLES ACTIONS CI-DESSOUS ---
-            elif action == "ROMPRE_ALLIANCE":
-                if cible in etat_du_monde[attaquant]["alliances"]:
-                    etat_du_monde[attaquant]["alliances"].remove(cible)
-                if attaquant in etat_du_monde[cible]["alliances"]:
-                    etat_du_monde[cible]["alliances"].remove(attaquant)
-                print(f"💔 ALLIANCE ROMPUE : {attaquant} trahit {cible} !")
+    # --- ÉTAPE 1 : TRAITEMENT DES RUPTURES ET PAIX (Immédiat) ---
+    for emetteur, ordres in toutes_les_actions.items():
+        for cible, action in ordres.items():
+            if action == "ROMPRE_ALLIANCE":
+                if cible in etat_du_monde[emetteur]["alliances"]:
+                    etat_du_monde[emetteur]["alliances"].remove(cible)
+                if emetteur in etat_du_monde[cible]["alliances"]:
+                    etat_du_monde[cible]["alliances"].remove(emetteur)
+                print(f"💔 {emetteur} a rompu son alliance avec {cible}.")
 
             elif action == "PAIX":
-                # Dans un jeu simple, la paix proposée est automatiquement acceptée
-                if cible in etat_du_monde[attaquant]["en_guerre_contre"]:
-                    etat_du_monde[attaquant]["en_guerre_contre"].remove(cible)
-                if attaquant in etat_du_monde[cible]["en_guerre_contre"]:
-                    etat_du_monde[cible]["en_guerre_contre"].remove(attaquant)
-                print(f"🕊️ PAIX SIGNÉE : Fin du conflit entre {attaquant} et {cible}.")
+                if cible in etat_du_monde[emetteur]["en_guerre_contre"]:
+                    etat_du_monde[emetteur]["en_guerre_contre"].remove(cible)
+                if emetteur in etat_du_monde[cible]["en_guerre_contre"]:
+                    etat_du_monde[cible]["en_guerre_contre"].remove(emetteur)
+                print(f"🕊️ Paix signée entre {emetteur} et {cible}.")
 
-    # ÉTAPE 3 : Calcul Mensuel des Ressources
+    # --- ÉTAPE 2 : TRAITEMENT DES ATTAQUES (Priorité sur l'alliance) ---
+    for emetteur, ordres in toutes_les_actions.items():
+        for cible, action in ordres.items():
+            if action == "ATTAQUE":
+                # La guerre annule toute tentative d'alliance
+                if emetteur not in etat_du_monde[cible]["en_guerre_contre"]:
+                    etat_du_monde[emetteur]["en_guerre_contre"].append(cible)
+                    etat_du_monde[cible]["en_guerre_contre"].append(emetteur)
+                    # On retire des alliances si existantes
+                    if cible in etat_du_monde[emetteur]["alliances"]:
+                        etat_du_monde[emetteur]["alliances"].remove(cible)
+                        etat_du_monde[cible]["alliances"].remove(emetteur)
+                    print(f"⚔️ {emetteur} attaque {cible} !")
+
+    # --- ÉTAPE 3 : TRAITEMENT DES ALLIANCES (Logique complexe) ---
+    for emetteur, ordres in toutes_les_actions.items():
+        for cible, action in ordres.items():
+            if action == "ALLIANCE":
+                # Cas 1 : Déjà en guerre ou déjà allié
+                if cible in etat_du_monde[emetteur]["alliances"]:
+                    continue # On ignore simplement sans rien afficher
+
+                # Cas 2 : La cible attaque l'émetteur au même tour
+                cible_action_vers_emetteur = toutes_les_actions.get(cible, {}).get(emetteur)
+                if cible_action_vers_emetteur == "ATTAQUE":
+                    print(f"🚫 Alliance échouée : {cible} a choisi d'attaquer {emetteur} !")
+                    continue
+
+                # Cas 3 : La cible propose AUSSI une alliance (Création immédiate)
+                if cible_action_vers_emetteur == "ALLIANCE":
+                    if cible not in etat_du_monde[emetteur]["alliances"]:
+                        etat_du_monde[emetteur]["alliances"].append(cible)
+                        etat_du_monde[cible]["alliances"].append(emetteur)
+                        print(f"🤝 ALLIANCE RÉCIPROQUE : {emetteur} et {cible} s'unissent !")
+                
+                # Cas 4 : La cible n'a pas réagi (Attente tour n+1)
+                else:
+                    if emetteur not in etat_du_monde[cible]["alliances_en_attente"]:
+                        etat_du_monde[cible]["alliances_en_attente"].append(emetteur)
+                        print(f"📩 {emetteur} propose une alliance à {cible} (Réponse au tour suivant).")
+
+    # --- ÉTAPE 4 : MISE À JOUR ÉCONOMIQUE ---
+    # (Garder ta logique de revenus passifs et malus de guerre ici)
     for pays, data in etat_du_monde.items():
-        stats = data["ressources"]
-        
-        # Revenu passif (10% de l'argent divisé par 12 mois)
-        revenu_argent = int((stats["A"] * 0.10) / 12) 
-        stats["A"] += revenu_argent
-        
-        # Modificateurs de Guerre
         if len(data["en_guerre_contre"]) > 0:
-            stats["H"] -= 0.5 
-            stats["S"] -= 2    
-            stats["A"] -= 50   
-            
-            if stats["S"] < 0: stats["S"] = 0
-            if stats["H"] < 1: stats["H"] = 1
+            data["ressources"]["S"] -= 2
+            data["ressources"]["A"] -= 50
 
-    # On renvoie le monde mis à jour au main.py !
     return etat_du_monde
-
-def simulation_appel_ia(etat_du_monde, nom_joueur):
-    actions_ia = {}
-    tous_pays = list(etat_du_monde.keys())
-    
-    for pays in tous_pays:
-        if pays == nom_joueur: continue
-        
-        actions_ia[pays] = {}
-        data = etat_du_monde[pays]
-        
-        # L'IA regarde ses voisins/ennemis
-        for cible in tous_pays:
-            if cible == pays: continue
-            
-            est_allie = cible in data["alliances"]
-            est_en_guerre = cible in data["en_guerre_contre"]
-            
-            # --- RÈGLE 1 : Si en guerre, peut-elle demander la paix ? ---
-            if est_en_guerre:
-                # Si sa satisfaction est basse, elle demande la paix
-                if data["ressources"]["S"] < 40 and random.random() < 0.3:
-                    actions_ia[pays][cible] = "PAIX"
-            
-            # --- RÈGLE 2 : Si pas allié et pas en guerre, peut-elle attaquer ? ---
-            elif not est_allie and not est_en_guerre:
-                # 2% de chance de déclarer une guerre au hasard
-                if random.random() < 0.10:
-                    actions_ia[pays][cible] = "ATTAQUE"
-                # 5% de chance de proposer une alliance
-                elif random.random() < 0.05:
-                    actions_ia[pays][cible] = "ALLIANCE"
-            
-            # --- RÈGLE 3 : Peut-elle rompre une alliance ? ---
-            elif est_allie:
-                # Si elle n'a plus d'argent, elle peut rompre l'alliance (coûteux)
-                if data["ressources"]["A"] < 0 and random.random() < 0.01:
-                    actions_ia[pays][cible] = "ROMPRE_ALLIANCE"
-                    
-    return actions_ia

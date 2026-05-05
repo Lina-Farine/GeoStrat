@@ -12,7 +12,7 @@ class GameEngine:
 
     def _charger_stats_base(self):
         with open(self.fichier_base, 'r', encoding='utf-8') as f:
-            return json.load(f)
+            return json.load(f) 
 
     def nouvelle_partie(self, pays_joueur):
         print(f"🌍 Création d'un nouveau monde (Contexte 2026). Joueur: {pays_joueur}")
@@ -22,7 +22,7 @@ class GameEngine:
         with open(chemin_diplo, 'r', encoding='utf-8') as f:
             diplo_initiale = json.load(f)
         
-        monde = {}
+        monde = {} 
         # 1. On charge d'abord les données brutes
         for code_pays, stats in stats_base.items():
             diplo = diplo_initiale.get(code_pays, {"alliances": [], "en_guerre_contre": []})
@@ -72,3 +72,33 @@ class GameEngine:
         if self.etat_jeu:
             self.etat_jeu['tour'] += 1
             self.sauvegarder()
+
+    def afficher_interface_tour(self, actions_ia, codes):
+        """Affiche le bandeau de tour et le bulletin dans la console."""
+        # On récupère le tour depuis l'état actuel du moteur
+        tour_actuel = self.etat_jeu["tour"]
+
+        # Titre principal encadré
+        print("\n" + "╔" + "═" * 48 + "╗")
+        print(f"║{' ' * 16}🌍 GEOTSTRAT - TOUR {tour_actuel:<3}{' ' * 14}║")
+        print("╚" + "═" * 48 + "╝")
+
+        print(f"\n📜 [ BULLETIN DIPLOMATIQUE - TOUR {tour_actuel} ]")
+        print("─" * 50)
+
+        for pays, decisions in actions_ia.items():
+            nom_p = codes.get(pays, pays)
+            for cible, action in decisions.items():
+                nom_c = codes.get(cible, cible)
+                # Mapping des icônes pour le feedback visuel[cite: 4]
+                icones = {
+                    "ATTAQUE": "⚔️ ", 
+                    "ALLIANCE": "🤝 ", 
+                    "ROMPRE_ALLIANCE": "💔 ", 
+                    "PAIX": "🕊️ ", 
+                    "RIEN": "💤 "
+                }
+                prefixe = icones.get(action, "🔹 ")
+                print(f"{prefixe} {nom_p:<12} ➔  {action:<15} ➔  {nom_c}")
+        
+        print("─" * 50 + "\n")
