@@ -264,7 +264,7 @@ def dessiner_commerce_panel(code_cible, clic_x):
     panel_y = 100
     
     # Fond
-    rect_panel = pygame.Rect(panel_x, panel_y, 400, 400)
+    rect_panel = pygame.Rect(panel_x, panel_y, 400, 300)
     pygame.draw.rect(screen, (40, 40, 60), rect_panel, border_radius=10)
     
     # Titre
@@ -272,10 +272,8 @@ def dessiner_commerce_panel(code_cible, clic_x):
     screen.blit(font_titre.render(f"Commerce avec : {nom_cible}", True, (255, 255, 255)), (panel_x + 20, panel_y + 20))
     
     # Boutons d'action
-    btn_action_1 = pygame.Rect(panel_x + 50, panel_y + 80, 300, 50)
-    btn_action_2 = pygame.Rect(panel_x + 50, panel_y + 150, 300, 50)
-    btn_action_3 = pygame.Rect(panel_x + 50, panel_y + 220, 300, 50)
-    btn_action_4 = pygame.Rect(panel_x + 50, panel_y + 290, 300, 50)
+    btn_action_1 = pygame.Rect(panel_x + 50, panel_y + 100, 300, 50)
+    btn_action_2 = pygame.Rect(panel_x + 50, panel_y + 170, 300, 50)
 
     
     # --- LOGIQUE DE VERROUILLAGE ---
@@ -286,51 +284,32 @@ def dessiner_commerce_panel(code_cible, clic_x):
     achete_petrole_a = code_cible in monde[pays_joueur]["achete_petrole_a"]
     actions_en_cours = actions_joueur.get(code_cible, [])
 
-    # 1. Bouton Vendre nourriture
-    if vend_nourriture_a:
-        couleur_1 = (200, 100, 50) if "PAS_VENDRE_N" in actions_en_cours else (70, 70, 70)
-        label_1 = "Arreter de vendre de la nourriture"
-    else:
-        couleur_1 = (50, 150, 50) if "VENDRE_N" in actions_en_cours else (70, 70, 70)
-        label_1 = "Vendre de la nourriture"
     
-    # 2. Bouton Acheter nourriture
+    # 1. Bouton Acheter nourriture
     if achete_nourriture_a:
-        couleur_2 = (200, 100, 50) if "PAS_ACHETER_N" in actions_en_cours else (70, 70, 70)
-        label_2 = "Arreter d'acheter de la nourriture"
+        couleur_1 = (200, 100, 50) if "PAS_ACHETER_N" in actions_en_cours else (70, 70, 70)
+        label_1 = "Arreter d'acheter de la nourriture"
     else:
-        couleur_2 = (50, 150, 50) if "ACHETER_N" in actions_en_cours else (70, 70, 70)
-        label_2 = "Acheter de la nourriture"
+        couleur_1 = (50, 150, 50) if "ACHETER_N" in actions_en_cours else (70, 70, 70)
+        label_1 = "Acheter de la nourriture"
 
-    # 3. Bouton Vendre pétrole
-    if vend_petrole_a:
-        couleur_3 = (200, 100, 50) if "PAS_VENDRE_P" in actions_en_cours else (70, 70, 70)
-        label_3 = "Arreter de vendre du pétrole"
-    else:
-        couleur_3 = (50, 150, 50) if "VENDRE_P" in actions_en_cours else (70, 70, 70)
-        label_3 = "Vendre du pétrole"
-    
-    # 4. Acheter pétrole
+    # 2. Acheter pétrole
     if achete_petrole_a:
-        couleur_4 = (200, 100, 50) if "PAS_ACHETER_P" in actions_en_cours else (70, 70, 70)
-        label_4 = "Arreter d'acheter du pétrole"
+        couleur_2 = (200, 100, 50) if "PAS_ACHETER_P" in actions_en_cours else (70, 70, 70)
+        label_2 = "Arreter d'acheter du pétrole"
     else:
-        couleur_4 = (50, 150, 50) if "ACHETER_P" in actions_en_cours else (70, 70, 70)
-        label_4 = "Acheter du pétrole"
+        couleur_2 = (50, 150, 50) if "ACHETER_P" in actions_en_cours else (70, 70, 70)
+        label_2 = "Acheter du pétrole"
     
 
     # Dessin
     pygame.draw.rect(screen, couleur_1, btn_action_1, border_radius=5)
     pygame.draw.rect(screen, couleur_2, btn_action_2, border_radius=5)
-    pygame.draw.rect(screen, couleur_3, btn_action_3, border_radius=5)
-    pygame.draw.rect(screen, couleur_4, btn_action_4, border_radius=5)
-    screen.blit(font_texte.render(label_1, True, (255, 255, 255)), (panel_x + 60, panel_y + 90))
-    screen.blit(font_texte.render(label_2, True, (255, 255, 255)), (panel_x + 60, panel_y + 160))
-    screen.blit(font_texte.render(label_3, True, (255, 255, 255)), (panel_x + 60, panel_y + 230))
-    screen.blit(font_texte.render(label_4, True, (255, 255, 255)), (panel_x + 60, panel_y + 300))
+    screen.blit(font_texte.render(label_1, True, (255, 255, 255)), (panel_x + 60, panel_y + 110))
+    screen.blit(font_texte.render(label_2, True, (255, 255, 255)), (panel_x + 60, panel_y + 180))
     
     # On renvoie aussi l'état actuel pour que le clic sache quoi faire
-    return btn_action_1, btn_action_2, btn_action_3, btn_action_4, achete_nourriture_a, vend_nourriture_a, achete_petrole_a, vend_petrole_a
+    return btn_action_1, btn_action_2, achete_nourriture_a, vend_nourriture_a, achete_petrole_a, vend_petrole_a
 
 
 def dessiner_menu():
@@ -567,21 +546,12 @@ while running:
 
                     elif menu_actuel == "COMMERCE" :
                         # Affiche options de commerce
-                        btn_v_no, btn_a_no, btn_v_pe, btn_a_pe, vend_n, achete_n, vend_p, achete_p = dessiner_commerce_panel(pays_selectionne_code, dernier_clic_x)
-                            
-                        if btn_v_no.collidepoint(mouse_pos):
-                            actions_joueur = ajoute_action(pays_selectionne_code, "PAS_VENDRE_N", "VENDRE_N", vend_n)
-                            clic_sur_ui = True
+                        btn_a_no, btn_a_pe, vend_n, achete_n, vend_p, achete_p = dessiner_commerce_panel(pays_selectionne_code, dernier_clic_x)
                         
                         if btn_a_no.collidepoint(mouse_pos):
                             actions_joueur = ajoute_action(pays_selectionne_code, "PAS_ACHETER_N", "ACHETER_N", achete_n)
                             clic_sur_ui = True
 
-                        if btn_v_pe.collidepoint(mouse_pos):
-                            if not achete_p and "ACHETER_P" not in actions_joueur.get(pays_selectionne_code, []):
-                                actions_joueur = ajoute_action(pays_selectionne_code, "PAS_VENDRE_P", "VENDRE_P", vend_p)
-                            clic_sur_ui = True
-                        
                         if btn_a_pe.collidepoint(mouse_pos):
                             if not vend_p and "VENDRE_P" not in actions_joueur.get(pays_selectionne_code, []):
                                 actions_joueur = ajoute_action(pays_selectionne_code, "PAS_ACHETER_P", "ACHETER_P", achete_p)
