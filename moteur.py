@@ -48,6 +48,14 @@ def resoudre_tour(etat_du_monde, chemin_actions):
                         etat_du_monde[emetteur]["alliances"].remove(cible)
                         etat_du_monde[cible]["alliances"].remove(emetteur)
                     print(f"⚔️ {emetteur} attaque {cible} !")
+                # La guerre annule les accords commerciaux
+                for ressource in ["vend_nourriture_a", "achete_nourriture_a", "vend_petrole_a", "achete_petrole_a"]:
+                    if emetteur in etat_du_monde[cible][ressource]:
+                        etat_du_monde[cible][ressource].remove(emetteur)
+                    if cible in etat_du_monde[emetteur][ressource]:
+                        etat_du_monde[emetteur][ressource].remove(cible)
+                
+                print(f"⚔️ {emetteur} attaque {cible} ! Les routes commerciales sont coupées.")
 
     # --- ÉTAPE 3 : TRAITEMENT DES ALLIANCES (Logique complexe) ---
     for emetteur, ordres in toutes_les_actions.items():
@@ -76,6 +84,10 @@ def resoudre_tour(etat_du_monde, chemin_actions):
                         etat_du_monde[cible]["alliances_en_attente"].append(emetteur)
                         print(f"📩 {emetteur} propose une alliance à {cible} (Réponse au tour suivant).")
 
+    # --- ETAPE 4 : TRAITEMENT DU COMMERCE
+    #relou attendre de savoir si autre pays accepte = attendre appel IA
+
+# A MODIF!!!
     # --- ÉTAPE 4 : MISE À JOUR ÉCONOMIQUE ---
     # (Garder ta logique de revenus passifs et malus de guerre ici)
     for pays, data in etat_du_monde.items():

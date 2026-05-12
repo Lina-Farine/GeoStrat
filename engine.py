@@ -25,11 +25,15 @@ class GameEngine:
         monde = {} 
         # 1. On charge d'abord les données brutes
         for code_pays, stats in stats_base.items():
-            diplo = diplo_initiale.get(code_pays, {"alliances": [], "en_guerre_contre": []})
+            diplo = diplo_initiale.get(code_pays, {"alliances": [], "en_guerre_contre": [], "vend_nourriture_a": [], "achete_nourriture_a": [], "vend_petrole_a": [], "achete_petrole_a": []})
             monde[code_pays] = {
                 "ressources": stats.copy(),
                 "alliances": diplo["alliances"],
-                "en_guerre_contre": diplo["en_guerre_contre"]
+                "en_guerre_contre": diplo["en_guerre_contre"],
+                "vend_nourriture_a": diplo["vend_nourriture_a"],
+                "achete_nourriture_a": diplo["achete_nourriture_a"],
+                "vend_petrole_a": diplo["vend_petrole_a"],
+                "achete_petrole_a": diplo["achete_petrole_a"]                                        
             }
 
         # 2. SYMÉTRISATION AUTOMATIQUE (La sécurité)
@@ -44,6 +48,23 @@ class GameEngine:
             for pays_b in data["alliances"]:
                 if pays_b in monde and pays_a not in monde[pays_b]["alliances"]:
                     monde[pays_b]["alliances"].append(pays_a)
+            
+            # Pour le commerce de nourriture(même logique)
+            for pays_b in data["vend_nourriture_a"]:
+                if pays_b in monde and pays_a not in monde[pays_b]["achete_nourriture_a"]:
+                    monde[pays_b]["achete_nourriture_a"].append(pays_a)
+            for pays_b in data["achete_nourriture_a"]:
+                if pays_b in monde and pays_a not in monde[pays_b]["vend_nourriture_a"]:
+                    monde[pays_b]["vend_nourriture_a"].append(pays_a)
+
+            # Pour le commerce de pétrole(même logique)
+            for pays_b in data["vend_petrole_a"]:
+                if pays_b in monde and pays_a not in monde[pays_b]["achete_petrole_a"]:
+                    monde[pays_b]["achete_petrole_a"].append(pays_a)
+            for pays_b in data["achete_petrole_a"]:
+                if pays_b in monde and pays_a not in monde[pays_b]["vend_petrole_a"]:
+                    monde[pays_b]["vend_petrole_a"].append(pays_a)
+
             
         self.etat_jeu = {
             "tour": 1,
@@ -86,6 +107,8 @@ class GameEngine:
         print(f"\n📜 [ BULLETIN DIPLOMATIQUE - TOUR {tour_actuel} ]")
         print("─" * 50)
 
+
+# A MODIF!!!
         for pays, decisions in actions_ia.items():
             nom_p = codes.get(pays, pays)
             for cible, action in decisions.items():
