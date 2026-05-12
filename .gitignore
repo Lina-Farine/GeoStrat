@@ -1,3 +1,4 @@
 .venv/
 data/partie_en_cours.json
 .env
+data/actions_tour.json

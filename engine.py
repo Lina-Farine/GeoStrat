@@ -113,7 +113,7 @@ class GameEngine:
             nom_p = codes.get(pays, pays)
             for cible, action in decisions.items():
                 nom_c = codes.get(cible, cible)
-                # Mapping des icônes pour le feedback visuel[cite: 4]
+                # Mapping des icônes pour le feedback visuel
                 icones = {
                     "ATTAQUE": "⚔️ ", 
                     "ALLIANCE": "🤝 ", 

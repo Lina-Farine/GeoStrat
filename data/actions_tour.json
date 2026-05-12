@@ -5,16 +5,55 @@
     },
     "actions": {
         "US": {
-            "DZ": "ATTAQUE"
+            "DZ": [
+                "ACHETER_N",
+                "VENDRE_N",
+                "VENDRE_P"
+            ]
+        },
+        "CA": {
+            "MX": "ALLIANCE"
+        },
+        "FR": {
+            "IN": "ALLIANCE"
+        },
+        "DE": {
+            "UA": "ALLIANCE"
+        },
+        "RU": {
+            "UA": "ATTAQUE"
+        },
+        "CN": {
+            "AU": "ALLIANCE"
+        },
+        "BR": {
+            "AR": "ALLIANCE"
+        },
+        "PT": {
+            "DE": "ALLIANCE"
+        },
+        "KP": {
+            "KR": "ATTAQUE",
+            "US": "ATTAQUE"
         },
         "KR": {
             "KP": "ATTAQUE"
         },
-        "IL": {
-            "IR": "ATTAQUE"
+        "IR": {
+            "IL": "ATTAQUE"
         },
-        "RU": {
-            "UA": "ATTAQUE"
+        "IL": {
+            "IR": "ATTAQUE",
+            "PS": "ATTAQUE"
+        },
+        "PS": {
+            "IL": "ATTAQUE"
+        },
+        "UA": {
+            "RU": "ATTAQUE"
+        },
+        "MX": {
+            "US": "ALLIANCE"
         }
     }
 }
