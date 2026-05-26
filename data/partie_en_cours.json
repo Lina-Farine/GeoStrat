@@ -1,0 +1,657 @@
+{
+    "tour": 1,
+    "pays_joueur": "CN",
+    "monde": {
+        "US": {
+            "ressources": {
+                "N": 500000000,
+                "A": 26900,
+                "H": 335,
+                "P": 13200,
+                "S": 69
+            },
+            "alliances": [
+                "CA",
+                "FR",
+                "ES",
+                "DE",
+                "AU",
+                "GB",
+                "KR",
+                "IL",
+                "UA",
+                "MX",
+                "IN",
+                "GL",
+                "PT"
+            ],
+            "en_guerre_contre": [
+                "IR",
+                "KP"
+            ],
+            "vend_beaucoup_de_nourriture_a": [],
+            "vend_un_peu_de_nourriture_a": [],
+            "achete_beaucoup_de_nourriture_a": [],
+            "achete_un_peu_de_nourriture_a": [],
+            "vend_beaucoup_de_petrole_a": [],
+            "vend_un_peu_de_petrole_a": [],
+            "achete_beaucoup_de_petrole_a": [],
+            "achete_un_peu_de_petrole_a": []
+        },
+        "CA": {
+            "ressources": {
+                "N": 130000000,
+                "A": 2100,
+                "H": 40,
+                "P": 4600,
+                "S": 70
+            },
+            "alliances": [
+                "US",
+                "GB",
+                "FR",
+                "DE",
+                "AU",
+                "MX",
+                "GL"
+            ],
+            "en_guerre_contre": [],
+            "vend_beaucoup_de_nourriture_a": [],
+            "vend_un_peu_de_nourriture_a": [],
+            "achete_beaucoup_de_nourriture_a": [],
+            "achete_un_peu_de_nourriture_a": [],
+            "vend_beaucoup_de_petrole_a": [],
+            "vend_un_peu_de_petrole_a": [],
+            "achete_beaucoup_de_petrole_a": [],
+            "achete_un_peu_de_petrole_a": []
+        },
+        "FR": {
+            "ressources": {
+                "N": 70000000,
+                "A": 2900,
+                "H": 68,
+                "P": 15,
+                "S": 66
+            },
+            "alliances": [
+                "US",
+                "DE",
+                "ES",
+                "PT",
+                "GB",
+                "CA",
+                "UA",
+                "IN",
+                "CD"
+            ],
+            "en_guerre_contre": [],
+            "vend_beaucoup_de_nourriture_a": [],
+            "vend_un_peu_de_nourriture_a": [],
+            "achete_beaucoup_de_nourriture_a": [],
+            "achete_un_peu_de_nourriture_a": [],
+            "vend_beaucoup_de_petrole_a": [],
+            "vend_un_peu_de_petrole_a": [],
+            "achete_beaucoup_de_petrole_a": [],
+            "achete_un_peu_de_petrole_a": []
+        },
+        "ES": {
+            "ressources": {
+                "N": 40000000,
+                "A": 1500,
+                "H": 48,
+                "P": 2,
+                "S": 64
+            },
+            "alliances": [
+                "FR",
+                "PT",
+                "DE",
+                "US",
+                "UA"
+            ],
+            "en_guerre_contre": [],
+            "vend_beaucoup_de_nourriture_a": [],
+            "vend_un_peu_de_nourriture_a": [],
+            "achete_beaucoup_de_nourriture_a": [],
+            "achete_un_peu_de_nourriture_a": [],
+            "vend_beaucoup_de_petrole_a": [],
+            "vend_un_peu_de_petrole_a": [],
+            "achete_beaucoup_de_petrole_a": [],
+            "achete_un_peu_de_petrole_a": []
+        },
+        "DE": {
+            "ressources": {
+                "N": 45000000,
+                "A": 4400,
+                "H": 83,
+                "P": 35,
+                "S": 67
+            },
+            "alliances": [
+                "FR",
+                "US",
+                "ES",
+                "PT",
+                "GB",
+                "IL",
+                "UA",
+                "CA",
+                "GL",
+                "KR"
+            ],
+            "en_guerre_contre": [],
+            "vend_beaucoup_de_nourriture_a": [],
+            "vend_un_peu_de_nourriture_a": [],
+            "achete_beaucoup_de_nourriture_a": [],
+            "achete_un_peu_de_nourriture_a": [],
+            "vend_beaucoup_de_petrole_a": [],
+            "vend_un_peu_de_petrole_a": [],
+            "achete_beaucoup_de_petrole_a": [],
+            "achete_un_peu_de_petrole_a": []
+        },
+        "RU": {
+            "ressources": {
+                "N": 120000000,
+                "A": 2000,
+                "H": 144,
+                "P": 10500,
+                "S": 56
+            },
+            "alliances": [
+                "IN",
+                "CN",
+                "IR",
+                "KP",
+                "VE",
+                "DZ",
+                "BR",
+                "ZA"
+            ],
+            "en_guerre_contre": [
+                "UA"
+            ],
+            "vend_beaucoup_de_nourriture_a": [],
+            "vend_un_peu_de_nourriture_a": [],
+            "achete_beaucoup_de_nourriture_a": [],
+            "achete_un_peu_de_nourriture_a": [],
+            "vend_beaucoup_de_petrole_a": [],
+            "vend_un_peu_de_petrole_a": [],
+            "achete_beaucoup_de_petrole_a": [],
+            "achete_un_peu_de_petrole_a": []
+        },
+        "IN": {
+            "ressources": {
+                "N": 315000000,
+                "A": 3700,
+                "H": 1428,
+                "P": 700,
+                "S": 59
+            },
+            "alliances": [
+                "RU",
+                "US",
+                "BR",
+                "ZA",
+                "FR"
+            ],
+            "en_guerre_contre": [],
+            "vend_beaucoup_de_nourriture_a": [],
+            "vend_un_peu_de_nourriture_a": [],
+            "achete_beaucoup_de_nourriture_a": [],
+            "achete_un_peu_de_nourriture_a": [],
+            "vend_beaucoup_de_petrole_a": [],
+            "vend_un_peu_de_petrole_a": [],
+            "achete_beaucoup_de_petrole_a": [],
+            "achete_un_peu_de_petrole_a": []
+        },
+        "CN": {
+            "ressources": {
+                "N": 650000000,
+                "A": 17700,
+                "H": 1412,
+                "P": 4100,
+                "S": 58
+            },
+            "alliances": [
+                "RU",
+                "KP",
+                "IR",
+                "PK",
+                "BR",
+                "ZA",
+                "VE"
+            ],
+            "en_guerre_contre": [],
+            "vend_beaucoup_de_nourriture_a": [],
+            "vend_un_peu_de_nourriture_a": [],
+            "achete_beaucoup_de_nourriture_a": [],
+            "achete_un_peu_de_nourriture_a": [],
+            "vend_beaucoup_de_petrole_a": [],
+            "vend_un_peu_de_petrole_a": [],
+            "achete_beaucoup_de_petrole_a": [],
+            "achete_un_peu_de_petrole_a": []
+        },
+        "AR": {
+            "ressources": {
+                "N": 100000000,
+                "A": 600,
+                "H": 46,
+                "P": 600,
+                "S": 60
+            },
+            "alliances": [
+                "BR"
+            ],
+            "en_guerre_contre": [],
+            "vend_beaucoup_de_nourriture_a": [],
+            "vend_un_peu_de_nourriture_a": [],
+            "achete_beaucoup_de_nourriture_a": [],
+            "achete_un_peu_de_nourriture_a": [],
+            "vend_beaucoup_de_petrole_a": [],
+            "vend_un_peu_de_petrole_a": [],
+            "achete_beaucoup_de_petrole_a": [],
+            "achete_un_peu_de_petrole_a": []
+        },
+        "AU": {
+            "ressources": {
+                "N": 40000000,
+                "A": 1700,
+                "H": 26,
+                "P": 400,
+                "S": 71
+            },
+            "alliances": [
+                "US",
+                "GB",
+                "CA",
+                "KR"
+            ],
+            "en_guerre_contre": [],
+            "vend_beaucoup_de_nourriture_a": [],
+            "vend_un_peu_de_nourriture_a": [],
+            "achete_beaucoup_de_nourriture_a": [],
+            "achete_un_peu_de_nourriture_a": [],
+            "vend_beaucoup_de_petrole_a": [],
+            "vend_un_peu_de_petrole_a": [],
+            "achete_beaucoup_de_petrole_a": [],
+            "achete_un_peu_de_petrole_a": []
+        },
+        "GB": {
+            "ressources": {
+                "N": 25000000,
+                "A": 3300,
+                "H": 67,
+                "P": 700,
+                "S": 68
+            },
+            "alliances": [
+                "US",
+                "FR",
+                "DE",
+                "CA",
+                "AU",
+                "UA",
+                "IL",
+                "KR"
+            ],
+            "en_guerre_contre": [],
+            "vend_beaucoup_de_nourriture_a": [],
+            "vend_un_peu_de_nourriture_a": [],
+            "achete_beaucoup_de_nourriture_a": [],
+            "achete_un_peu_de_nourriture_a": [],
+            "vend_beaucoup_de_petrole_a": [],
+            "vend_un_peu_de_petrole_a": [],
+            "achete_beaucoup_de_petrole_a": [],
+            "achete_un_peu_de_petrole_a": []
+        },
+        "BR": {
+            "ressources": {
+                "N": 240000000,
+                "A": 2100,
+                "H": 216,
+                "P": 3200,
+                "S": 61
+            },
+            "alliances": [
+                "AR",
+                "ZA",
+                "IN",
+                "CN",
+                "RU",
+                "MX"
+            ],
+            "en_guerre_contre": [],
+            "vend_beaucoup_de_nourriture_a": [],
+            "vend_un_peu_de_nourriture_a": [],
+            "achete_beaucoup_de_nourriture_a": [],
+            "achete_un_peu_de_nourriture_a": [],
+            "vend_beaucoup_de_petrole_a": [],
+            "vend_un_peu_de_petrole_a": [],
+            "achete_beaucoup_de_petrole_a": [],
+            "achete_un_peu_de_petrole_a": []
+        },
+        "PT": {
+            "ressources": {
+                "N": 6000000,
+                "A": 270,
+                "H": 10,
+                "P": 0,
+                "S": 60
+            },
+            "alliances": [
+                "ES",
+                "FR",
+                "DE",
+                "US",
+                "UA"
+            ],
+            "en_guerre_contre": [],
+            "vend_beaucoup_de_nourriture_a": [],
+            "vend_un_peu_de_nourriture_a": [],
+            "achete_beaucoup_de_nourriture_a": [],
+            "achete_un_peu_de_nourriture_a": [],
+            "vend_beaucoup_de_petrole_a": [],
+            "vend_un_peu_de_petrole_a": [],
+            "achete_beaucoup_de_petrole_a": [],
+            "achete_un_peu_de_petrole_a": []
+        },
+        "KP": {
+            "ressources": {
+                "N": 4000000,
+                "A": 18,
+                "H": 26,
+                "P": 0,
+                "S": 25
+            },
+            "alliances": [
+                "CN",
+                "RU",
+                "IR"
+            ],
+            "en_guerre_contre": [
+                "KR",
+                "US"
+            ],
+            "vend_beaucoup_de_nourriture_a": [],
+            "vend_un_peu_de_nourriture_a": [],
+            "achete_beaucoup_de_nourriture_a": [],
+            "achete_un_peu_de_nourriture_a": [],
+            "vend_beaucoup_de_petrole_a": [],
+            "vend_un_peu_de_petrole_a": [],
+            "achete_beaucoup_de_petrole_a": [],
+            "achete_un_peu_de_petrole_a": []
+        },
+        "KR": {
+            "ressources": {
+                "N": 12000000,
+                "A": 1700,
+                "H": 51,
+                "P": 0,
+                "S": 59
+            },
+            "alliances": [
+                "US",
+                "AU",
+                "DE",
+                "GB"
+            ],
+            "en_guerre_contre": [
+                "KP"
+            ],
+            "vend_beaucoup_de_nourriture_a": [],
+            "vend_un_peu_de_nourriture_a": [],
+            "achete_beaucoup_de_nourriture_a": [],
+            "achete_un_peu_de_nourriture_a": [],
+            "vend_beaucoup_de_petrole_a": [],
+            "vend_un_peu_de_petrole_a": [],
+            "achete_beaucoup_de_petrole_a": [],
+            "achete_un_peu_de_petrole_a": []
+        },
+        "IR": {
+            "ressources": {
+                "N": 80000000,
+                "A": 400,
+                "H": 89,
+                "P": 3100,
+                "S": 48
+            },
+            "alliances": [
+                "RU",
+                "CN",
+                "KP",
+                "PS",
+                "VE"
+            ],
+            "en_guerre_contre": [
+                "IL",
+                "US"
+            ],
+            "vend_beaucoup_de_nourriture_a": [],
+            "vend_un_peu_de_nourriture_a": [],
+            "achete_beaucoup_de_nourriture_a": [],
+            "achete_un_peu_de_nourriture_a": [],
+            "vend_beaucoup_de_petrole_a": [],
+            "vend_un_peu_de_petrole_a": [],
+            "achete_beaucoup_de_petrole_a": [],
+            "achete_un_peu_de_petrole_a": []
+        },
+        "IL": {
+            "ressources": {
+                "N": 3000000,
+                "A": 500,
+                "H": 9,
+                "P": 0,
+                "S": 73
+            },
+            "alliances": [
+                "US",
+                "DE",
+                "GB"
+            ],
+            "en_guerre_contre": [
+                "PS",
+                "IR"
+            ],
+            "vend_beaucoup_de_nourriture_a": [],
+            "vend_un_peu_de_nourriture_a": [],
+            "achete_beaucoup_de_nourriture_a": [],
+            "achete_un_peu_de_nourriture_a": [],
+            "vend_beaucoup_de_petrole_a": [],
+            "vend_un_peu_de_petrole_a": [],
+            "achete_beaucoup_de_petrole_a": [],
+            "achete_un_peu_de_petrole_a": []
+        },
+        "PS": {
+            "ressources": {
+                "N": 1000000,
+                "A": 18,
+                "H": 5,
+                "P": 0,
+                "S": 35
+            },
+            "alliances": [
+                "DZ",
+                "IR"
+            ],
+            "en_guerre_contre": [
+                "IL"
+            ],
+            "vend_beaucoup_de_nourriture_a": [],
+            "vend_un_peu_de_nourriture_a": [],
+            "achete_beaucoup_de_nourriture_a": [],
+            "achete_un_peu_de_nourriture_a": [],
+            "vend_beaucoup_de_petrole_a": [],
+            "vend_un_peu_de_petrole_a": [],
+            "achete_beaucoup_de_petrole_a": [],
+            "achete_un_peu_de_petrole_a": []
+        },
+        "VE": {
+            "ressources": {
+                "N": 15000000,
+                "A": 90,
+                "H": 28,
+                "P": 700,
+                "S": 52
+            },
+            "alliances": [
+                "RU",
+                "IR",
+                "CN"
+            ],
+            "en_guerre_contre": [],
+            "vend_beaucoup_de_nourriture_a": [],
+            "vend_un_peu_de_nourriture_a": [],
+            "achete_beaucoup_de_nourriture_a": [],
+            "achete_un_peu_de_nourriture_a": [],
+            "vend_beaucoup_de_petrole_a": [],
+            "vend_un_peu_de_petrole_a": [],
+            "achete_beaucoup_de_petrole_a": [],
+            "achete_un_peu_de_petrole_a": []
+        },
+        "GL": {
+            "ressources": {
+                "N": 50000,
+                "A": 3,
+                "H": 0.05,
+                "P": 0,
+                "S": 65
+            },
+            "alliances": [
+                "DE",
+                "US",
+                "CA"
+            ],
+            "en_guerre_contre": [],
+            "vend_beaucoup_de_nourriture_a": [],
+            "vend_un_peu_de_nourriture_a": [],
+            "achete_beaucoup_de_nourriture_a": [],
+            "achete_un_peu_de_nourriture_a": [],
+            "vend_beaucoup_de_petrole_a": [],
+            "vend_un_peu_de_petrole_a": [],
+            "achete_beaucoup_de_petrole_a": [],
+            "achete_un_peu_de_petrole_a": []
+        },
+        "UA": {
+            "ressources": {
+                "N": 60000000,
+                "A": 170,
+                "H": 38,
+                "P": 40,
+                "S": 50
+            },
+            "alliances": [
+                "US",
+                "FR",
+                "DE",
+                "GB",
+                "ES",
+                "PT"
+            ],
+            "en_guerre_contre": [
+                "RU"
+            ],
+            "vend_beaucoup_de_nourriture_a": [],
+            "vend_un_peu_de_nourriture_a": [],
+            "achete_beaucoup_de_nourriture_a": [],
+            "achete_un_peu_de_nourriture_a": [],
+            "vend_beaucoup_de_petrole_a": [],
+            "vend_un_peu_de_petrole_a": [],
+            "achete_beaucoup_de_petrole_a": [],
+            "achete_un_peu_de_petrole_a": []
+        },
+        "MX": {
+            "ressources": {
+                "N": 28000000,
+                "A": 1600,
+                "H": 128,
+                "P": 1600,
+                "S": 63
+            },
+            "alliances": [
+                "US",
+                "CA",
+                "BR"
+            ],
+            "en_guerre_contre": [],
+            "vend_beaucoup_de_nourriture_a": [],
+            "vend_un_peu_de_nourriture_a": [],
+            "achete_beaucoup_de_nourriture_a": [],
+            "achete_un_peu_de_nourriture_a": [],
+            "vend_beaucoup_de_petrole_a": [],
+            "vend_un_peu_de_petrole_a": [],
+            "achete_beaucoup_de_petrole_a": [],
+            "achete_un_peu_de_petrole_a": []
+        },
+        "ZA": {
+            "ressources": {
+                "N": 15000000,
+                "A": 380,
+                "H": 60,
+                "P": 100,
+                "S": 52
+            },
+            "alliances": [
+                "BR",
+                "RU",
+                "IN",
+                "CN",
+                "DZ",
+                "CD"
+            ],
+            "en_guerre_contre": [],
+            "vend_beaucoup_de_nourriture_a": [],
+            "vend_un_peu_de_nourriture_a": [],
+            "achete_beaucoup_de_nourriture_a": [],
+            "achete_un_peu_de_nourriture_a": [],
+            "vend_beaucoup_de_petrole_a": [],
+            "vend_un_peu_de_petrole_a": [],
+            "achete_beaucoup_de_petrole_a": [],
+            "achete_un_peu_de_petrole_a": []
+        },
+        "DZ": {
+            "ressources": {
+                "N": 10000000,
+                "A": 220,
+                "H": 45,
+                "P": 1000,
+                "S": 53
+            },
+            "alliances": [
+                "RU",
+                "PS",
+                "ZA"
+            ],
+            "en_guerre_contre": [],
+            "vend_beaucoup_de_nourriture_a": [],
+            "vend_un_peu_de_nourriture_a": [],
+            "achete_beaucoup_de_nourriture_a": [],
+            "achete_un_peu_de_nourriture_a": [],
+            "vend_beaucoup_de_petrole_a": [],
+            "vend_un_peu_de_petrole_a": [],
+            "achete_beaucoup_de_petrole_a": [],
+            "achete_un_peu_de_petrole_a": []
+        },
+        "CD": {
+            "ressources": {
+                "N": 20000000,
+                "A": 65,
+                "H": 102,
+                "P": 20,
+                "S": 32
+            },
+            "alliances": [
+                "ZA",
+                "FR"
+            ],
+            "en_guerre_contre": [],
+            "vend_beaucoup_de_nourriture_a": [],
+            "vend_un_peu_de_nourriture_a": [],
+            "achete_beaucoup_de_nourriture_a": [],
+            "achete_un_peu_de_nourriture_a": [],
+            "vend_beaucoup_de_petrole_a": [],
+            "vend_un_peu_de_petrole_a": [],
+            "achete_beaucoup_de_petrole_a": [],
+            "achete_un_peu_de_petrole_a": []
+        }
+    }
+}

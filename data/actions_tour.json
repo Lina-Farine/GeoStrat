@@ -1,59 +1,46 @@
 {
     "metadata": {
         "tour": 1,
-        "nom_joueur": "US"
+        "nom_joueur": "DZ"
     },
     "actions": {
-        "US": {
-            "DZ": [
-                "ACHETER_N",
-                "VENDRE_N",
-                "VENDRE_P"
-            ]
-        },
-        "CA": {
-            "MX": "ALLIANCE"
-        },
         "FR": {
-            "IN": "ALLIANCE"
+            "US": "PROPOSE_GROS_ACHAT_PETROLE"
+        },
+        "ES": {
+            "US": "PROPOSE_GROS_ACHAT_PETROLE"
         },
         "DE": {
-            "UA": "ALLIANCE"
-        },
-        "RU": {
-            "UA": "ATTAQUE"
-        },
-        "CN": {
-            "AU": "ALLIANCE"
-        },
-        "BR": {
-            "AR": "ALLIANCE"
+            "CA": "PROPOSE_GROS_ACHAT_PETROLE"
         },
         "PT": {
-            "DE": "ALLIANCE"
+            "US": "PROPOSE_GROS_ACHAT_NOURRITURE"
         },
         "KP": {
-            "KR": "ATTAQUE",
-            "US": "ATTAQUE"
+            "CN": "PROPOSE_GROS_ACHAT_NOURRITURE",
+            "KR": "PROPOSE_PAIX"
         },
         "KR": {
-            "KP": "ATTAQUE"
-        },
-        "IR": {
-            "IL": "ATTAQUE"
+            "US": "PROPOSE_GROS_ACHAT_PETROLE"
         },
         "IL": {
-            "IR": "ATTAQUE",
-            "PS": "ATTAQUE"
+            "US": "PROPOSE_GROS_ACHAT_NOURRITURE"
         },
         "PS": {
-            "IL": "ATTAQUE"
+            "IR": "PROPOSE_GROS_ACHAT_NOURRITURE"
+        },
+        "GL": {
+            "US": "PROPOSE_GROS_ACHAT_NOURRITURE"
         },
         "UA": {
-            "RU": "ATTAQUE"
+            "US": "PROPOSE_GROS_ACHAT_PETROLE"
         },
-        "MX": {
-            "US": "ALLIANCE"
-        }
+        "CD": {
+            "ZA": "PROPOSE_GROS_ACHAT_PETROLE"
+        },
+        "AR": {
+            "IN": "PROPOSE_ALLIANCE"
+        },
+        "DZ": {}
     }
 }

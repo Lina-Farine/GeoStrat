@@ -30,10 +30,14 @@ class GameEngine:
                 "ressources": stats.copy(),
                 "alliances": diplo["alliances"],
                 "en_guerre_contre": diplo["en_guerre_contre"],
-                "vend_nourriture_a": diplo["vend_nourriture_a"],
-                "achete_nourriture_a": diplo["achete_nourriture_a"],
-                "vend_petrole_a": diplo["vend_petrole_a"],
-                "achete_petrole_a": diplo["achete_petrole_a"]                                        
+                "vend_beaucoup_de_nourriture_a": [],
+                "vend_un_peu_de_nourriture_a": [],
+                "achete_beaucoup_de_nourriture_a": [],
+                "achete_un_peu_de_nourriture_a": [],
+                "vend_beaucoup_de_petrole_a": [],
+                "vend_un_peu_de_petrole_a": [],
+                "achete_beaucoup_de_petrole_a": [],
+                "achete_un_peu_de_petrole_a": []
             }
 
         # 2. SYMÉTRISATION AUTOMATIQUE (La sécurité)
@@ -50,20 +54,34 @@ class GameEngine:
                     monde[pays_b]["alliances"].append(pays_a)
             
             # Pour le commerce de nourriture(même logique)
-            for pays_b in data["vend_nourriture_a"]:
-                if pays_b in monde and pays_a not in monde[pays_b]["achete_nourriture_a"]:
-                    monde[pays_b]["achete_nourriture_a"].append(pays_a)
-            for pays_b in data["achete_nourriture_a"]:
-                if pays_b in monde and pays_a not in monde[pays_b]["vend_nourriture_a"]:
-                    monde[pays_b]["vend_nourriture_a"].append(pays_a)
+            for pays_b in data["vend_beaucoup_de_nourriture_a"]:
+                if pays_b in monde and pays_a not in monde[pays_b]["achete_beaucoup_de_nourriture_a"]:
+                    monde[pays_b]["achete_beaucoup_de_nourriture_a"].append(pays_a)
+            for pays_b in data["achete_beaucoup_de_nourriture_a"]:
+                if pays_b in monde and pays_a not in monde[pays_b]["vend_beaucoup_de_nourriture_a"]:
+                    monde[pays_b]["vend_beaucoup_de_nourriture_a"].append(pays_a)
+            
+            for pays_b in data["vend_un_peu_de_nourriture_a"]:
+                if pays_b in monde and pays_a not in monde[pays_b]["achete_un_peu_de_nourriture_a"]:
+                    monde[pays_b]["achete_un_peu_de_nourriture_a"].append(pays_a)
+            for pays_b in data["achete_un_peu_de_nourriture_a"]:
+                if pays_b in monde and pays_a not in monde[pays_b]["vend_un_peu_de_nourriture_a"]:
+                    monde[pays_b]["vend_un_peu_de_nourriture_a"].append(pays_a)
 
             # Pour le commerce de pétrole(même logique)
-            for pays_b in data["vend_petrole_a"]:
-                if pays_b in monde and pays_a not in monde[pays_b]["achete_petrole_a"]:
-                    monde[pays_b]["achete_petrole_a"].append(pays_a)
-            for pays_b in data["achete_petrole_a"]:
-                if pays_b in monde and pays_a not in monde[pays_b]["vend_petrole_a"]:
-                    monde[pays_b]["vend_petrole_a"].append(pays_a)
+            for pays_b in data["vend_beaucoup_de_petrole_a"]:
+                if pays_b in monde and pays_a not in monde[pays_b]["achete_beaucoup_de_petrole_a"]:
+                    monde[pays_b]["achete_beaucoup_de_petrole_a"].append(pays_a)
+            for pays_b in data["achete_beaucoup_de_petrole_a"]:
+                if pays_b in monde and pays_a not in monde[pays_b]["vend_beaucoup_de_petrole_a"]:
+                    monde[pays_b]["vend_beaucoup_de_petrole_a"].append(pays_a)
+            
+            for pays_b in data["vend_un_peu_de_petrole_a"]:
+                if pays_b in monde and pays_a not in monde[pays_b]["achete_un_peu_de_petrole_a"]:
+                    monde[pays_b]["achete_un_peu_de_petrole_a"].append(pays_a)
+            for pays_b in data["achete_un_peu_de_petrole_a"]:
+                if pays_b in monde and pays_a not in monde[pays_b]["vend_un_peu_de_petrole_a"]:
+                    monde[pays_b]["vend_un_peu_de_petrole_a"].append(pays_a)
 
             
         self.etat_jeu = {
@@ -108,20 +126,47 @@ class GameEngine:
         print("─" * 50)
 
 
-# A MODIF!!!
         for pays, decisions in actions_ia.items():
             nom_p = codes.get(pays, pays)
             for cible, action in decisions.items():
                 nom_c = codes.get(cible, cible)
                 # Mapping des icônes pour le feedback visuel
                 icones = {
-                    "ATTAQUE": "⚔️ ", 
-                    "ALLIANCE": "🤝 ", 
+                    "ATTAQUE": "⚔️ ",
+                    "PROPOSE_ALLIANCE": "🤝",
                     "ROMPRE_ALLIANCE": "💔 ", 
-                    "PAIX": "🕊️ ", 
-                    "RIEN": "💤 "
+                    "PROPOSE_PAIX": "🕊️",
+                    "PROPOSE_GROS_ACHAT_NOURRITURE": "🌾 (gros lot)",
+                    "PROPOSE_PETIT_ACHAT_NOURRITURE": "🌾 (petit lot)",
+                    "PROPOSE_GROS_ACHAT_PETROLE": "🛢️ (gros lot)",
+                    "PROPOSE_PETIT_ACHAT_PETROLE": "🛢️ (petit lot)",
+        
                 }
                 prefixe = icones.get(action, "🔹 ")
                 print(f"{prefixe} {nom_p:<12} ➔  {action:<15} ➔  {nom_c}")
+        
+        print("─" * 50 + "\n")
+
+
+    def afficher_interface_tour2(self, retours_ia, codes):
+        """Affiche le bandeau de tour et le bulletin dans la console."""
+        # On récupère le tour depuis l'état actuel du moteur
+        tour_actuel = self.etat_jeu["tour"]
+
+        print(f"\n📜 [ RETOURS SUR LES PROPOSITIONS - TOUR {tour_actuel} ]")
+        print("─" * 50)
+
+#A MODIF
+        for pays, decisions in retours_ia.items():
+            nom_p = codes.get(pays, pays)
+            for cible, action in decisions.items():
+                nom_c = codes.get(cible, cible)
+                # Mapping des icônes pour le feedback visuel
+                icones = {
+                    "ACCEPTE": "✔", 
+                    "REFUSE": "✘"
+                }
+                prefixe = icones.get(action, "🔹 ")
+                print(f"{prefixe} {nom_c:<12} ➔  {action[1]:<15} {action[0]:<15} ➔  {nom_p}")
         
         print("─" * 50 + "\n")

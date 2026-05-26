@@ -1,0 +1,126 @@
+"MENU" = nouvelle partie / reprendre partie en cours
+"SELECTION" = choisir son pays
+"JOUER" = jeu
+"COMMERCE"
+"PROPOSITION ALLAINCE"
+"PROPOSITION COMMERCE"
+
+c'est tout
+
+je voudrai generer_tour_ia -> traitement_propositions_ia -> joueur accepte ou refuse les propositions qui lui sont faites(d'abord alliance puis commerce) -> le joueur déclare des guerres ou propose des alliances
+
+
+TO DO
+    1) ajouter listes besoin/surplus food/oil
+        OUI - chaque tour calcule surplus ET conv en lots N=[(CA,G),...] P=[(IR,P),...] -> NP, NG, PP, PG=[CA, FR, IR, ...]
+        IG  - echanges permanents avec possibilité de cesser (si vend bouffe alors que produit pas assez ton pb)
+OUI 2) ajouter listes propal commerce/alliance
+OUI 3) ecran propal alliance/commerce
+OUI 4) refaire écran commerce
+OUI 5) appel IA
+OUI 6) moteur
+OUI 7) engine (affichage actions)
+    8) vérifier/refaire comm
+    9) rapport
+
+
+🌾, 🛢️
+
+def dessiner_action_panel(code_cible, clic_x):
+    """Dessine le panneau d'action de façon dynamique selon les relations."""
+    panel_x = 850 if clic_x < WIDTH / 2 else 30
+    panel_y = 100
+    
+    # Fond
+    rect_panel = pygame.Rect(panel_x, panel_y, 400, 300)
+    pygame.draw.rect(screen, (40, 40, 60), rect_panel, border_radius=10)
+    
+    # Titre
+    nom_cible = CODES_TO_NAMES.get(code_cible, code_cible)
+    screen.blit(font_titre.render(f"Ordres vers : {nom_cible}", True, (255, 255, 255)), (panel_x + 20, panel_y + 20))
+    
+    # Boutons d'action
+    btn_action_1 = pygame.Rect(panel_x + 50, panel_y + 80, 300, 50)
+    btn_action_2 = pygame.Rect(panel_x + 50, panel_y + 150, 300, 50)
+    btn_action_3 = pygame.Rect(panel_x + 50, panel_y + 220, 300, 50)
+    
+    # --- LOGIQUE DE VERROUILLAGE ---
+    monde = moteur.etat_jeu["monde"]
+    est_allie = code_cible in monde[pays_joueur]["alliances"]
+    est_en_guerre = code_cible in monde[pays_joueur]["en_guerre_contre"]
+    actions_en_cours = actions_joueur.get(code_cible, [])
+
+    # 1. Bouton Alliance / Rupture
+    if est_en_guerre:
+        couleur_1 = (40, 40, 40) # Noirâtre (Bloqué)
+        label_1 = "Guerre en cours (Alliance impossible)"
+    elif est_allie:
+        couleur_1 = (200, 100, 50) if "ROMPRE_ALLIANCE" in actions_en_cours else (70, 70, 70)
+        label_1 = "Rompre l'Alliance"
+    else:
+        couleur_1 = (50, 150, 50) if "ALLIANCE" in actions_en_cours else (70, 70, 70)
+        label_1 = "Proposer Alliance"
+
+    # 2. Bouton Guerre / Paix
+    if est_allie:
+        couleur_2 = (40, 40, 40) # Noirâtre (Bloqué)
+        label_2 = "Allié (Attaque impossible)"
+    elif est_en_guerre:
+        couleur_2 = (50, 150, 200) if "PAIX" in actions_en_cours else (70, 70, 70)
+        label_2 = "Signer la Paix"
+    else:
+        couleur_2 = (200, 50, 50) if "ATTAQUE" in actions_en_cours else (70, 70, 70)
+        label_2 = "Déclarer la Guerre"
+    
+    # 3. Bouton Commerce
+    if est_en_guerre:
+        couleur_3 = (40, 40, 40) # Noirâtre (Bloqué)
+        label_3 = "Guerre en cours (Commerce impossible)"
+    else:
+        couleur_3 = (50, 150, 50) if "COMMERCE" in actions_en_cours else (70, 70, 70)
+        label_3 = "Proposer Commerce"
+
+    # Dessin
+    pygame.draw.rect(screen, couleur_1, btn_action_1, border_radius=5)
+    pygame.draw.rect(screen, couleur_2, btn_action_2, border_radius=5)
+    pygame.draw.rect(screen, couleur_3, btn_action_3, border_radius=5)
+    screen.blit(font_texte.render(label_1, True, (255, 255, 255)), (panel_x + 60, panel_y + 90))
+    screen.blit(font_texte.render(label_2, True, (255, 255, 255)), (panel_x + 60, panel_y + 160))
+    screen.blit(font_texte.render(label_3, True, (255, 255, 255)), (panel_x + 60, panel_y + 230))
+    
+    # On renvoie aussi l'état actuel pour que le clic sache quoi faire
+    return btn_action_1, btn_action_2, btn_action_3, est_allie, est_en_guerre
+,
+            "surplus":{
+                "N": 0,
+                "P": -60
+            }
+
+
+            ,
+            "propal_commerce":[],
+            "commerce":[
+                ["CA", "VN", "G"],
+                ["FR", "AP", "P"]            
+            ]
+
+
+
+
+                    if emetteur not in etat_du_monde[cible]["alliances_en_attente"]:
+                        etat_du_monde[cible]["alliances_en_attente"].append(emetteur)
+                        print(f"📩 {emetteur} propose une alliance à {cible} (Réponse au tour suivant).")
+
+
+
+
+
+            ,
+            "vend_beaucoup_de_nourriture_a": [],
+            "vend_un_peu_de_nourriture_a": [],
+            "achete_beaucoup_de_nourriture_a": [],
+            "achete_un_peu_de_nourriture_a": [],
+            "vend_beaucoup_de_petrole_a": [],
+            "vend_un_peu_de_petrole_a": [],
+            "achete_beaucoup_de_petrole_a": [],
+            "achete_un_peu_de_petrole_a": []
